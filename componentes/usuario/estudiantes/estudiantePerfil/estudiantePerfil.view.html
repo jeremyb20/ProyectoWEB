@@ -1,0 +1,45 @@
+<div ng-cloak="" class="inputdemoErrors" ng-app="myEnsamble">
+  <div layout="row" >
+    <md-sidenav layout-align="start center" md-is-locked-open="true"  flex="25">
+      <img src="componentes/imagenes/logoC.png" alt="logo Soft House">
+
+        <button class="sesion" layout-aling="center end" ui-sref="registrarHoras">Cronómetro</button>
+    </md-sidenav>
+
+    <md-content flex>
+      <md-nav-bar aria-label="nav-bar" class="md-whiteframe-4dp left" flex>
+        <span flex></span>
+        <div>
+          <i class="fa fa-bell-o" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Notificaciones</button>
+        </div>
+        <div>
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <button  class="session" ui-sref="calendario" layout-align="center end"> Agenda</button>
+        </div>
+        <div>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Opciones</button>
+        </div>
+        <div>
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Hola Usuario</button>
+        </div>
+        <div>
+          <i class="fa fa-power-off" aria-hidden="true"></i>
+        <button  class="session" ui-sref="inicio" layout-align="center end"> Salir</button>
+        </div>
+      </md-nav-bar>
+
+      <div class="container-fluid">
+        <h2>Buenos dias,<span ng-repeat="alumno in estudiantes | limitTo:1">{{alumno.estudiantes}}</span></h2>
+        <h3>Proyectos Activos</h3>
+        <a data-toggle="collapse" ng-model="estudianteCtrl.nombre" value="{{solEstudiante.nombre}}" data-parent="#accordion">{{solEstudiante.nombre}}</a>
+          <p>agregar informacion</p>
+      </div>
+      </div>
+      </div>
+    </md-content>
+  </div>
+</div>
+<div ui-view></div>

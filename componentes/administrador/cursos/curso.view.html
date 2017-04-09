@@ -1,0 +1,46 @@
+<div id="cursos">
+  <h2>Cursos</h2>
+
+  <form name="formularioCurso">
+
+    <div class="row">
+      <div class="col-md-2">
+        <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="cursoCtrl.codigoCurso" ng-pattern="/^[a-zA-Z ]*$/" required>
+        <div ng-messages="formularioCurso.codigo.$error">
+          <div ng-message-exp="'required'">Este campo es requerido</div>
+          <div ng-message-exp="'pattern'">Este campo solo permite letras, números o guiones</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre del curso" ng-model="cursoCtrl.nombre" ng-pattern="/^[a-zA-Z ]*$/" required>
+        <div ng-messages="formularioCurso.nombre.$error">
+          <div ng-message-exp="'required'">Este campo es requerido</div>
+          <div ng-message-exp="'pattern'">Este campo solo permite letras, números o guiones</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <select>
+        <option value="{{carrera.nombre}}" ng-repeat="carrera in cursoCtrl.carreras">{{carrera.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select class="form-control" name="">
+        <option value="">Técnico</option>
+        <option value="">Diplomado</option>
+        <option value="">Bachillerato</option>
+        <option value="">Licenciatura</option>
+      </select>
+    </div>
+
+
+
+  </form>
+
+
+</div>

@@ -1,0 +1,160 @@
+<div id="carreras">
+  <div class="row no-margin">
+
+    <div class="col-md-12">
+      <h2 class="text-center">Carreras</h2>
+    </div>
+
+
+
+    <form name="formularioCarrera" novalidate="">
+
+      <div class="row text-center">
+
+        <div class="col-md-3 col-md-offset-3" ng-class="
+        {
+          'errorBorder': formularioCarrera.codigo.$invalid && !formularioCarrera.codigo.$pristine
+        }
+        ">
+
+          <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="carreraCtrl.codigoCarrera" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚñ ]*$/" required>
+          <div ng-messages="formularioCarrera.codigo.$error" class="error">
+            <div ng-message-exp="'required'">Campo requerido!</div>
+            <div ng-message-exp="'pattern'">Este campo solo permite letras</div>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-class="
+        {
+          'errorBorder': formularioCarrera.nombre.$invalid && !formularioCarrera.nombre.$pristine
+        }
+        ">
+          <input type="text" class="form-control" name="nombre" placeholder="Ingresar nombre de la carrera" ng-model="carreraCtrl.nombre" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚ ]*$/" required>
+          <div ng-messages="formularioCarrera.nombre.$error" class="error">
+            <div ng-message-exp="'required'">Campo requerido!</div>
+            <div ng-message-exp="'pattern'">Este campo solo permite letras</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row text-center">
+        <div class="col-md-3 col-md-offset-3" ng-class="
+        {
+          'errorBorder': formularioCarrera.nivel.$invalid && !formularioCarrera.nivel.$pristine
+        }
+        ">
+        
+          <select class="form-control" name="nivel" ng-model="carreraCtrl.nivel" required>
+            <option value="">--Seleccione nivel--</option>
+            <option value="Técnico">Técnico</option>
+            <option value="Diplomado">Diplomado</option>
+            <option value="Bachillerato">Bachillerato</option>
+            <option value="Licenciatura">Licenciatura</option>
+          </select>
+
+          <div ng-messages="formularioCarrera.nivel.$error" class="error">
+            <div ng-message-exp="'required'">Campo requerido!</div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary pull-right" name="button" ng-click="carreraCtrl.save()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+
+      </div>
+
+
+      </form>
+
+
+
+
+      <div class="col-md-6 col-md-offset-3">
+        <table class="table text-center">
+          <tr>
+            <th class="text-center">Código</th>
+            <th class="text-center">Nombre de la carrerra</th>
+            <th class="text-center">Nivel</th>
+            <th class="text-center">Eliminar</th>
+          </tr>
+          <tbody>
+            <tr ng-repeat="carrera in carreraCtrl.carreras">
+              <td>{{carrera.codigoCarrera}}</td>
+              <td>{{carrera.nombre}}</td>
+              <td>{{carrera.nivel}}</td>
+              <td><button type="button" ng-click="carreraCtrl.eliminarCarrera(carrera.codigoCarrera, $event)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+    <!-- <div class="col-md-6 text-center">
+      <h1>Eliminar Carrera</h1>
+      <select ng-model="carreraCtrl.carreraSeleccionada">
+        <option value="">--Seleccionar Carrera--</option>
+        <option value="{{carrera.nombre}}" ng-repeat="carrera in carreraCtrl.carreras">{{carrera.nombre}}</option>
+      </select>
+      <button type="button" name="button" class="btn btn-primary" ng-click="carreraCtrl.eliminar()">Eliminar</button>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 role text-center">
+
+      <h1>Asignar Curso</h1>
+
+      <select ng-model="carreraCtrl.carreraSeleccionadaCurso">
+        <option value="">--Seleccionar Carrera--</option>
+        <option value="{{carrera.nombre}}" ng-repeat="carrera in carreraCtrl.carreras">{{carrera.nombre}}</option>
+      </select>
+      <br>
+      <input type="text" name="" value="" placeholder="Ingrese nombre del curso" ng-model="carreraCtrl.nombreCurso">
+      <br>
+      <button type="button" name="button" class="btn btn-primary" ng-click="carreraCtrl.asignar()">Asignar</button>
+
+    </div>
+
+    <div class="col-md-6 role text-center">
+      <h1>Eliminar Curso</h1>
+
+      <select ng-model="carreraCtrl.carreraSeleccionadaEliminarCurso">
+        <option value="{{carrera.nombre}}" ng-repeat="carrera in carreraCtrl.carreras">{{carrera.nombre}}</option>
+      </select>
+
+      <div ng-repeat="item in carreraCtrl.carreras | filter:{nombre:carreraCtrl.carreraSeleccionada}:true  track by $index">
+        <select ng-model="carreraCtrl.carreraEliminarCurso" >
+          <option ng-repeat="innerItem in item.cursos" ng-value="{{obj.name}}">{{innerItem.name}}</option>
+        </select>
+      </div>
+
+
+      <button type="button" name="button" class="btn btn-primary" ng-click="carreraCtrl.eliminarCurso()">Eliminar</button>
+    </div> -->
+
+
+  <!-- </div>
+
+  <table>
+  <thead>
+    <th>Carrera</th>
+    <th>Cursos</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="carrera in carreraCtrl.carreras">
+      <td>{{carrera.nombre}}</td>
+      <td>
+        <p ng-repeat="curso in carrera.cursos">{{curso.name}}</p>
+      </td>
+    </tr>
+  </tbody>
+</table> -->

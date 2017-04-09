@@ -1,0 +1,135 @@
+<div id="solicitudEstudiante" onload="abrir()">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6" id="bg-solicitudEstudiante">
+        <div class="col-md-12 text-center">
+          <img src="componentes/imagenes/logoC.png" alt="">
+          <h1>Solicitud Estudiantil</h1>
+          <p>¿Querés formar parte de Cenfotec Software House? Nos gustaría conocerte. Mandanos tú currículum, detallando tu trayectoria académica... ¡Permite explorar tus conocimientos, ideas y habilidades!</p>
+        </div>
+
+      </div>
+        <div class="col-md-6">
+            <form name="formularioEstudiantil">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': formularioEstudiantil.nombreEstudiante.$dirty && formularioEstudiantil.nombreEstudiante.$invalid || formularioEstudiantil.nombreEstudiante.$error.pattern, 'has-success': formularioEstudiantil.nombreEstudiante.$valid}">
+                            <label for="txtNombreEstudiante" class="control-label">Nombre:</label>
+                            <input class="form-control" id="txtNombreEstudiante" name="nombreEstudiante" ng-model="solicitudEstudianteCtrl.nombreEstudiante" ng-pattern="/^[a-zA-ZñÑ]*$/" required>
+                            <div ng-messages="formularioEstudiantil.nombreEstudiante.$error">
+                                <div ng-message="required" ng-show="!formularioEstudiantil.nombreEstudiante.$pristine || formularioEstudiantil.nombreEstudiante.$submitted" class="help-block">Campo requerido</div>
+                                <div ng-message="pattern" ng-show="!formularioEstudiantil.nombreEstudiante.$pristine" class="help-block">Solo se permiten letras</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': formularioEstudiantil.apellido1Estudiante.$dirty && formularioEstudiantil.apellido1Estudiante.$invalid || formularioEstudiantil.apellido1Estudiante.$error.pattern, 'has-success': formularioEstudiantil.apellido1Estudiante.$valid}">
+                            <label for="txtapellido1Estudiante" class="control-label">Primer apelido:</label>
+                            <input class="form-control" id="txtapellido1Estudiante" name="apellido1Estudiante" ng-model="solicitudEstudianteCtrl.apellido1Estudiante" ng-pattern="/^[a-zA-ZñÑ]*$/" required>
+                            <div ng-messages="formularioEstudiantil.apellido1Estudiante.$error">
+                                <div ng-message="required" ng-show="!formularioEstudiantil.apellido1Estudiante.$pristine || formularioEstudiantil.apellido1Estudiante.$submitted" class="help-block">Campo requerido</div>
+                                <div ng-message="pattern" ng-show="!formularioEstudiantil.apellido1Estudiante.$pristine" class="help-block">Solo se permiten letras</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error': formularioEstudiantil.apellido2Estudiante.$dirty && formularioEstudiantil.apellido2Estudiante.$invalid || formularioEstudiantil.apellido2Estudiante.$error.pattern, 'has-success': formularioEstudiantil.apellido2Estudiante.$valid}">
+                            <label for="txtapellido1Estudiante" class="control-label">Segundo apelido:</label>
+                            <input class="form-control" id="txtapellido2Estudiante" name="apellido2Estudiante" ng-model="solicitudEstudianteCtrl.apellido2Estudiante" ng-pattern="/^[a-zA-ZñÑ]*$/" required>
+                            <div ng-messages="formularioEstudiantil.apellido2Estudiante.$error">
+                                <div ng-message="required" ng-show="!formularioEstudiantil.apellido2Estudiante.$pristine || formularioEstudiantil.apellido2Estudiante.$submitted" class="help-block">Campo requerido</div>
+                                <div ng-message="pattern" ng-show="!formularioEstudiantil.apellido2Estudiante.$pristine" class="help-block">Solo se permiten letras</div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error': formularioEstudiantil.genero.$dirty && formularioEstudiantil.genero.$invalid || formularioEstudiantil.genero.$error.pattern, 'has-success': formularioEstudiantil.genero.$valid}">
+                              <label for="txtgenero" class="control-label">Genero:</label>
+                              <select ng-model="solicitudEstudianteCtrl.genero" id="txtgenero">
+                                <option value="">--Seleccione--</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Reservado">Reservado</option>
+                              </select>
+                                <div ng-messages="formularioEstudiantil.genero.$error">
+                                  <div ng-message="required" ng-show="!formularioEstudiantil.genero.$pristine
+                                  || formularioEstudiantil.genero.$submitted" class="help-block">Campo requerido</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="row">
+                       <!-- <div class="col-md-6">
+                         <div class="form-group" >
+                          <label for="txtEmailEstudiante" class="control-label">Correo de Cenfotec:</label>
+                          <input type="email"  id="txtEmailEstudiante" name="emailEstudiante" ng-model="solicitudEstudianteCtrl.emailEstudiante" required  ng-class="{ error:formularioEstudiantil.emailEstudiante.$error.required && formularioEstudiantil.emailEstudiante.$dirty}">
+                          <div ng-messages="formularioEstudiante.emailEstudiante.$error">
+                              <div ng-message="required" ng-show="!formularioEstudiante.emailEstudiante.$pristine" class="help-block">Campo requerido</div>
+                          </div>
+                      </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': formularioEstudiantil.emailEstudiante.$dirty && formularioEstudiantil.emailEstudiante.$invalid || formularioEstudiantil.emailEstudiante.$error.pattern, 'has-success': formularioEstudiantil.emailEstudiante.$valid}">
+                        <label for="txtEmailContacto" class="control-label">Correo de contacto:</label>
+                          <input class="form-control" id="txtEmailContacto" name="emailEstudiante" ng-model="solicitudEstudianteCtrl.emailEstudiante" ng-pattern="/^[a-zA-Z0-9._-]+@ucenfotec.ac.cr$/" required>
+                          <div ng-messages="formularioEstudiantil.emailEstudiante.$error">
+                            <div ng-message="required" ng-show="!formularioEstudiantil.emailEstudiante.$pristine" class="help-block">Campo requerido</div>
+                            <div ng-message="pattern" ng-show="!formularioEstudiantil.$pristine" class="help-block">Correo inválido</div>
+                      </div>
+                    </div>
+                   </div>
+                   </div>
+                    <div class="col-md-6">
+                          <label for="txtcarreras" class="control-label">Carreras:</label>
+                          <select ng-model="solicitudEstudianteCtrl.carreraSeleccionada">
+                            <option value="">--Seleccione la carrera--</option>
+                            <option ng-repeat="carreras in solicitudEstudianteCtrl.carreras track by $index" value="{{carreras.nombre}}">{{carreras.nombre}}</option>
+                          </select>
+                    </div>
+                    <div class="col-md-6">
+                      <md-input-container ng-repeat="item in solicitudEstudianteCtrl.carreras | filter:{nombre:solicitudEstudianteCtrl.carreraSeleccionada}:true  track by $index"  class="md-block">
+                             <i class="mdi mdi-bell"></i>
+                               <label>Seleccionar curso:</label>
+                                 <md-select name="multipleSelect" id="multipleSelect" ng-model="solicitudEstudianteCtrl.cursoSeleccionado" multiple>
+                                   <md-option ng-repeat="innerItem in item.cursos" ng-value="{{obj.name}}">{{innerItem.name}}</md-option>
+                                 </md-select>
+
+                                 <div ng-messages="labtForm.cinemaRoomType.$error">
+                                    <div ng-message="required">This is required.</div>
+                                 </div>
+                         </md-input-container>
+                      </div>
+
+
+<!--
+                          <select ng-options="carrera.cursos for carreras in solicitudEstudianteCtrl.carreras | filter:{nombre:solicitudEstudianteCtrl.carreraSeleccionada}:true " ng-model="filters[$index]">
+                            <option value="{{carrera.cursos.name}}" disabled>{{carrera.cursos.name}}</option>
+                          </select>-->
+
+                       <!--  </div> -->
+                    </div>
+                  <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': formularioEmpresarial.foto.$dirty && formularioEmpresarial.foto.$invalid , 'has-success': formularioEmpresarial.foto.$valid}">
+                            <label for="txtfoto">Foto perfil:</label>
+                            <input class="form-control" id="txtfoto" name="foto" ng-model="solicitudEstudianteCtrl.foto" type="file" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': formularioEmpresarial.curriculum.$dirty && formularioEmpresarial.curriculum.$invalid || formularioEmpresarial.curriculum.$error.pattern, 'has-success': formularioEmpresarial.curriculum.$valid}">
+                            <label for="txtcurriculum" class="control-label">Curriculum:</label>
+                            <input class="form-control" id="txtcurriculum" name="curriculum" ng-model="solicitudEstudianteCtrl.curriculum" type="file" required>
+                            <div ng-messages="formularioEmpresarial.curriculum.$error">
+                                <div ng-message="required" ng-show="!formularioEmpresarial.curriculum.$pristine" class="help-block">Campo requerido</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" ng-click="solicitudEstudianteCtrl.save()">Enviar solicitud</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
+<div ui-view></div>

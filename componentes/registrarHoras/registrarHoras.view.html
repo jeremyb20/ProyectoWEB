@@ -1,0 +1,66 @@
+<div ng-cloak="" class="inputdemoErrors" ng-app="myEnsamble">
+  <div layout="row" >
+    <md-sidenav layout-align="start center" md-is-locked-open="true"  flex="25">
+      <img src="componentes/imagenes/logoC.png" alt="logo Soft House">
+        <button  class="sesion" ui-sref="proyectos" layout-align="center end"> Proyectos</button>
+        <button  class="sesion" layout-align="center end"> Reportes</button>
+        
+    </md-sidenav>
+
+    <md-content flex>
+      <md-nav-bar aria-label="nav-bar" class="md-whiteframe-4dp left" flex>
+        <span flex></span>
+        <div>
+          <i class="fa fa-bell-o" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Notificaciones</button>
+        </div>
+        <div>
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Agenda</button>
+        </div>
+        <div>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Opciones</button>
+        </div>
+        <div>
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Hola Usuario</button>
+        </div>
+        <div>
+          <i class="fa fa-power-off" aria-hidden="true"></i>
+        <button  class="session" ui-sref="inicio" layout-align="center end"> Salir</button>
+        </div>
+      </md-nav-bar>
+
+
+      <md-content  flex layout="column" flex class="container">
+        <md-button class="md-button register" ng-click="registrarHorasCtrl.horaInicio()" type="submit">Iniciar Trabajo</md-button>
+        <md-button class="md-button register" ng-click="registrarHorasCtrl.horaFinal(); registrarHorasCtrl.save()" type="submit">Finalizar Trabajo</md-button>
+
+        <table class="table table-bordered"ng-controller="registrarHorasController as registrarHorasCtrl" id="tblHorasProyecto">
+          <thead>
+            <tr>
+              <th>Hora de Inicio</th>
+              <th>Hora de Inicio</th>
+              <th>Horas trabajadas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="registro in registrarHorasCtrl.horas">
+              <td class="done-{{registrarHorasCtrl.done}}" value="{{registro.horaInicio}}">{{registro.horaInicio | date:'HH:mm'}}</td>
+              <td class="done-{{registrarHorasCtrl.done}}" value="{{registro.horaFinal}}">{{registro.horaFinal | date:'HH:mm'}}</td>
+              <td class="done-{{registrarHorasCtrl.done}}" value="{{registro.tiempoTrabajado}}">{{registro.tiempoTrabajado}}</td>
+              <!-- <td><input type="checkbox" ng-model="checkComplete"></td> -->
+            </tr>
+          </tbody>
+        </table>
+          </div>
+          </div>
+        </form>
+
+
+    </md-content>
+
+  </div>
+</div>
+<div ui-view></div>

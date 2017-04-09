@@ -1,0 +1,272 @@
+
+
+<div ng-cloak="" id="popupContainer" class=" dialogdemoBasicUsage" ng-app="myEnsamble">
+  <div layout="row" >
+    <md-sidenav layout-align="start center" md-is-locked-open="true"  flex="25">
+      <img src="componentes/imagenes/logoC.png" alt="logo Soft House">
+        <button class="sesion" layout-align="center end" ui-sref="proyectos">Proyectos</button>
+        <button class="sesion" layout-align="center end" ui-sref="profesor">Reportes</button>
+        <button class="sesion" layout-align="center end" ui-sref="proyectos">Bitacoras</button>
+    </md-sidenav>
+
+    <md-content flex>
+      <md-nav-bar aria-label="nav-bar" class="md-whiteframe-4dp left" flex>
+        <span flex></span> 
+        <div>
+          <i class="fa fa-bell-o" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Notificaciones</button>
+        </div>
+        <div>
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Calendario</button>
+        </div>
+        <div>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Opciones</button>
+        </div>
+        <div>
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+          <button  class="session" layout-align="center end"> Hola usuario</button>
+        </div>
+        <div>
+          <i class="fa fa-power-off" aria-hidden="true"></i>
+        <button  class="session" ui-sref="inicio" layout-align="center end"> Salir</button>
+        </div>
+      </md-nav-bar>
+        
+       <div class="container-fluid">
+        <div class="row">
+            <md-tabs>
+              <md-tab label="Proyectos Pendientes">
+               <md-content>
+                  <div class="container-fluid" ng-repeat="objProyecto  in asistenteCtrl.proyectos | filter:{estado:'pendiente'}:true track by $index">
+                    <div class="panel-group" id="accordion" >
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h4 class="panel-title md-padd">
+                                <span>Nombre del cliente: <a data-toggle="collapse" ng-model="asistenteCtrl.nombre" value="{{objProyecto.nombre}}" data-parent="#accordion"> {{objProyecto.nombre}}</a></span>
+                              </h4>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="col-md-3">
+                                <button ng-click="asistenteCtrl.aceptar(objProyecto)">Aceptar</button>
+                              </div>
+                              <div class="col-md-3">
+                                <button ng-click="asistenteCtrl.rechazado(objProyecto)">Rechazar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                          <div class="panel-body">
+                            <p><small>Descripción:</small></p>
+                            <p ng-model="asistenteCtrl.descripcion" value="{{objProyecto.descripcion}}">
+                              {{objProyecto.descripcion}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </md-content>
+              </md-tab>
+
+              <md-tab label="Proyectos aceptados">
+                <h3>Proyectos Activos</h3>
+                <div class="container-fluid" ng-repeat="objProyecto in asistenteCtrl.proyectos | filter:{estado:'aceptado'}:true track by $index">
+                    <div class="panel-group" id="accordion2" >
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <h4 class="panel-title">
+                                <span data-toggle="collapse" data-target="#demo">Nombre del cliente: <a data-toggle="collapse" ng-model="asistenteCtrl.nombre" value="{{objProyecto.nombre}}" data-parent="#accordion"> {{objProyecto.nombre}}</a></span>
+                              </h4>
+                            </div>
+                       </div>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                          <md-tabs>
+                            <md-tab label="Información General">
+                              <form name="calendarioCtrlForm">
+                              <div class="row">
+                                <p>Descripción:</p>
+                                <p ng-model="asistenteCtrl.descripcion" value="{{objProyecto.descripcion}}">
+                                  {{objProyecto.descripcion}}
+                                </p>
+                              </div>
+                              <div class="row">
+                                <p>Estado:</p>
+                                <p ng-model="asistenteCtrl.estado" value="{{objProyecto.estado}}">
+                                  {{objProyecto.estado}}
+                                </p>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <md-input-container class="md-block">
+                                    <label>Fecha de Inicio:</label>
+                                      <md-datepicker  name="" ng-model="asistenteCtrl.inicio" required></md-datepicker>
+                                      <div ng-messages="calendarioCtrlForm.nombre.$error">
+                                        <div ng-message-exp="'required'">Esto es requerido</div>
+                                      </div>
+                                  </md-input-container>
+                                </div>
+                                <div class="col-md-6">
+                                  <md-input-container class="md-block">
+                                    <label>Fecha de finalización:</label>
+                                      <md-datepicker  name="" ng-model="asistenteCtrl.final" required></md-datepicker>
+                                      <div ng-messages="calendarioCtrlForm.nombre.$error">
+                                        <div ng-message-exp="'required'">Esto es requerido!</div>
+                                      </div>
+                                  </md-input-container>
+                                </div>
+                              <div class="row">
+                                <div disabled="" class="col-md-6">
+                                  <label disabled="">Agregar profesor proyecto:</label>
+                                  <select ng-model="proyectosCtrl.nombreProfesor">
+                                    <option disabled="" value="">--Seleccionar Profesor--</option>
+                                    <option disabled="" ng-repeat="profesores in proyectosCtrl.profesores track by $index" value="{{profesores.nombreProfesor}}">{{profesores.nombreProfesor}}</option>
+                                  </select>
+                                </div>
+                                <div  class="col-md-6">
+                                  <label disabled="">Agregar estudiante:</label>
+                                  <select  ng-model="proyectosCtrl.estudiantes">
+                                    <option disabled="" value="">--Seleccionar estudiante--</option>
+                                    <option disabled="" ng-repeat="estudiantes in proyectosCtrl.estudiantes track by $index" value="{{estudiantes.nombreEstudiante}}">{{estudiantes.nombreEstudiante}}</option>
+                                  </select>
+                                </div>
+                                <div class="text-center">
+                                  <div >
+                                    <button disabled="" type="button" class="btn btn-primary" ng-click="asistenteCtrl.agregarProfesor()">Agregar alumno y profesor</button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              </div>
+                              </form>
+                            </md-tab>
+
+
+
+                            <md-tab label="Comentarios Adicionales">
+                              <div class="container-fluid">
+                                <div class="row">
+                                  <form name="formularioEmpresarial">
+                                    <!-- <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="form-group" ng-class="{ 'has-error': formularioEmpresarial.cedulaEmpresa.$dirty && formularioEmpresarial.cedulaEmpresa.$invalid || formularioEmpresarial.cedulaEmpresa.$error.pattern, 'has-success': formularioEmpresarial.cedulaEmpresa.$valid}">
+                                      <label for="txtCedulaEmpresa" class="control-label">Costo:</label>
+                                        <input class="form-control" type="number" id="txtCedulaEmpresa" name="cedulaEmpresa" ng-model="asistenteCtrl.costo" ng-pattern="/^[0-9]*$/" required>
+                                        <div ng-messages="formularioEmpresarial.cedulaEmpresa.$error">
+                                          <div ng-message="required" ng-show="!formularioEmpresarial.cedulaEmpresa.$pristine" class="help-block">Solo se permiten numeros</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    </div> -->
+                                    <!-- <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <label>Industria o sector:</label>
+                                            <select name="" id="">
+                                              <option ng-model="asistenteCtrl.industria" value="{{objProyecto.industria}}">{{objProyecto.industria}}</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div> -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                          <div class="form-group" ng-class="{ 'has-error': formularioEmpresarial.descripcion.$dirty && formularioEmpresarial.descripcion.$invalid || formularioEmpresarial.descripcion.$error.pattern, 'has-success': formularioEmpresarial.descripcion.$valid}">
+                                          <label for="txtEmailContacto" class="control-label">Comentarios adicionales del proyecto:</label>
+                                            <textarea style="min-height:40px; max-height:70px;" class="form-control" id="txtEmailContacto" name="descripcion" ng-model="asistenteCtrl.descripcion" required></textarea>
+                                            <div ng-messages="formularioEmpresarial.descripcion.$error">
+                                              <div ng-message="required" ng-show="!formularioEmpresarial.descripcion.$pristine" class="help-block">Campo requerido</div>
+                                              <div ng-message="pattern" ng-show="!formularioEmpresarial.$pristine" class="help-block">Campo inválido</div>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="row md-pad">
+                                        <div class="">
+                                          <button type="button" class="btn btn-primary" ng-click="asistenteCtrl.guardarCambios(objProyecto)">Guardar Cambios</button>
+                                        </div>
+                                      </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </md-tab>
+                            <md-tab label="Bitácoras">
+                              <div class="container-fluid">
+                                <div class="row">
+                                <table class="table table-striped table-bordered table-hover ">
+                                  <thead>
+                                    <tr>
+                                      <th>Fecha Inicio</th>
+                                      <th>Comentarios Adicionales</th>
+                                      <th>Fecha Final</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr ng-repeat="obj in objProyecto.bitacoras">
+
+                                      <td>{{obj.inicio | date:'MM/dd/yyyy'}}</td>
+                                      <td>{{obj.descripcion}}</td>
+                                      <td>{{obj.nombre}}</td>
+                                      {{obj.descripcion | json}}
+
+                                    </tr>
+                                    <tr ng-repeat="obj in asistenteCtrl.proyectos.bitacoras">
+
+                                      <td>{{obj.inicio | date:'MM/dd/yyyy'}}</td>
+                                      <td>{{obj.descripcion}}</td>
+                                      <td>{{obj.nombre}}</td>
+                                      {{obj.descripcion | json}}
+
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              </div>
+                            </md-tab>
+                            <md-tab label=""></md-tab>
+                          </md-tabs>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </md-tab>
+
+              <md-tab label="Proyectos Rechazados">
+                  <md-content>
+                      <div class="container-fluid" ng-repeat="objProyecto in asistenteCtrl.proyectos | filter:{estado:'rechazado'}:true track by $index">
+                          <div class="panel-group" id="accordion3" >
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <h4 class="panel-title md-padd">
+                                      <a data-toggle="collapse" ng-model="asistenteCtrl.nombre" value="{{objProyecto.nombre}}"  data-parent="#accordion">{{objProyecto.nombre}}</a>
+                                    </h4>
+                                  </div>
+                             </div>
+                              </div>
+                              <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body" ng-model="asistenteCtrl.descripcion" value="{{objProyecto.descripcion}}">{{objProyecto.descripcion}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  </md-content>
+              </md-tab>
+              <md-tab label="">
+
+              </md-tab>
+          </md-tabs>
+        </div>
+      </div>
+    </md-content>
+  </div>
+</div>
+<div ui-view></div>

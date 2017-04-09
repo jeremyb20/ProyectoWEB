@@ -1,0 +1,36 @@
+<div id="inicioSesion">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6" id="bg-inicioSesion">
+        <div class="col-md-12 text-center">
+          <img src="componentes/imagenes/logoC.png" alt="">
+          
+          <h2>Recuperar contraseña</h2>
+        </div>
+
+      </div>
+        <div class="col-md-6 right-side">
+            <form name="formularioInicioSesion md-pad" novalidate>
+                <div class="row md-pad">
+                 
+                     <md-input-container md-padding="40px" class="md-block">
+                      <md-icon md-svg-src ='componentes/imagenes/account-outline.svg'></md-icon>
+                      <label>Correo de Cenfotec:</label>
+                      <input required="" name="correo" ng-model="olvidoContCtrl.correo">
+                      <div ng-messages="olvidoContForm.correo.$error">
+                        <div ng-message="required">Espacio requerido</div>
+                        <div ui-if="errorMessage">{{errorMessage}}</div>
+                      </div>
+                    </md-input-container>
+
+                  <div class="col-md-6">
+                    <div class="">
+                      <button class="btn btn-primary pull-right" type="submit" ng-click="olvidoCont.solicitar()">Reenviar contraseña</button>
+                    </div>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>

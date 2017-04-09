@@ -1,0 +1,61 @@
+<div id="inicioSesion">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6" id="bg-inicioSesion">
+        <div class="col-md-12 text-center">
+          <img src="componentes/imagenes/logoC.png" alt="">
+          <h2>Hola!</h2>
+          <h2>Bienvenid@!</h2>
+        </div>
+
+      </div>
+        <div class="col-md-6 right-side">
+            <form name="formularioInicioSesion" novalidate>
+                <div class="row">
+
+                  <div class="col-md-12">
+                    <h1 class="text-center">Iniciar Sesión</h1>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i><label> Cuenta de Correo</label>
+                      <input class="form-control" name="correo" ng-model="inicioSesionCtrl.correo" ng-pattern="/^[a-zA-Z0-9._-]+@ucenfotec.ac.cr$/" required>
+                      <div ng-messages="formularioInicioSesion.correo.$error">
+                        <div ng-message="required" ng-show="!formularioInicioSesion.correo.$pristine" class="help-block">Campo requerido</div>
+                        <div ng-message-exp="'pattern'">Email inválido</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <i class="fa fa-lock fa-3x" aria-hidden="true"></i><label> Contraseña</label>
+                      <input class="form-control" type="password" name="contrasenna" ng-model="inicioSesionCtrl.contrasenna" id="input_1" tabindex="0" aria-required="true" aria-invalid="true" ng-required="true">
+                      <div ng-messages="formularioInicioSesion.contrasenna.$error">
+                        <div ng-message="required" ng-show="!formularioInicioSesion.correo.$pristine" class="help-block">Campo requerido</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="">
+                      <a ui-sref="olvidoCont">Olvidé mi contraseña</a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="">
+                      <button class="btn btn-primary pull-right" type="submit" ng-click="inicioSesionCtrl.inicioSesion()">Iniciar sesión</button>
+                    </div>
+                  </div>
+
+
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
