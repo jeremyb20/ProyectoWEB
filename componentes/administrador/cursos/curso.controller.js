@@ -10,6 +10,18 @@
         cursoCtrl.carreras = administradorService.getCarreras();
       }init();
 
+      cursoCtrl.save = function (){
+
+          var nuevoCurso = {
+            codigo : cursoCtrl.codigo,
+            nombre : cursoCtrl.nombre
+          }
+
+
+          administradorService.asignarCurso(nuevoCurso, cursoCtrl.carrera);
+
+      }
+
 
 
     }

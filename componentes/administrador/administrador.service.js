@@ -12,17 +12,17 @@
       cursos:
       [
         {
-         codigoCurso : 'WEBTEC01',
-         curso : 'Fundamentos de Programación'
+         codigoCurso : 'WEBTEC-01',
+         curso : 'Fundamentos de Programación Web'
         },
 
         {
-         codigoCurso : 'WEBTEC02',
+         codigoCurso : 'WEBTEC-02',
          curso :'Diseño Web I'
         },
 
         {
-         codigoCurso : 'WEBTEC03',
+         codigoCurso : 'WEBTEC-03',
          curso :'Diseño Web II'
         },
 
@@ -34,7 +34,7 @@
         nivel : 'Técnico',
         cursos : [
           {
-           codigoCurso : 'TELTEC01',
+           codigoCurso : 'TELTEC-01',
            curso : 'Redes I'
           },
           {
@@ -99,10 +99,9 @@
       carreras.splice(pCarrera, 1);
     }
 
-    function _asignarCurso(pCurso, pCarrera) {
-      carreras[pCarrera].cursos.push({name:pCurso});
-      alert(pCurso);
+    function _asignarCurso(pNuevoCurso, pCarrera) {
 
+      carreras[Number(pCarrera)].cursos.push({codigoCurso:pNuevoCurso.codigo, curso:pNuevoCurso.nombre});
     }
 
     function _eliminarCurso(pCarrera, pCurso) {
