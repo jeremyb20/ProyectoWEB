@@ -26,6 +26,22 @@ body {
   border: 1px solid rgba(223,116,0, 1);
 }
 
+.error{
+  color: #df7400;
+}
+
+
+
+.ng-hide:not(.ng-hide-animate) {
+  display: block!important;
+  visibility:hidden!important;
+}
+
+.ng-hide{
+  display: block!important;
+  visibility:hidden!important;
+}
+
 
 
 
@@ -224,8 +240,12 @@ md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
   background-image: url("../componentes/imagenes/bg-administrador.jpg");
   background-position: center center;
   background-size: cover;
-  height: 700px;
-  max-width: 100%;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+
 }
 
 #bg-administrador h1{
@@ -738,10 +758,11 @@ footer .copy-right i{
   color: #fbb803;
 }
 
-#carreras .error{
-  color: #df7400;
-  height: 30px;
+{
+  height: 15px;
 }
+
+
 
 
 

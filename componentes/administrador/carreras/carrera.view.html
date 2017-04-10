@@ -9,7 +9,7 @@
 
     <form name="formularioCarrera" novalidate="">
 
-      <div class="row text-center">
+      <div class="row text-center padding">
 
         <div class="col-md-3 col-md-offset-3" ng-class="
         {
@@ -17,10 +17,10 @@
         }
         ">
 
-          <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="carreraCtrl.codigoCarrera" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚñ ]*$/" required>
-          <div ng-messages="formularioCarrera.codigo.$error" class="error">
-            <div ng-message-exp="'required'">Campo requerido!</div>
-            <div ng-message-exp="'pattern'">Este campo solo permite letras</div>
+          <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="carreraCtrl.codigoCarrera" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ ]*$/" required>
+          <div ng-messages="formularioCarrera.codigo.$error" class="error" ng-show="formularioCarrera.codigo.$invalid && !formularioCarrera.codigo.$pristine">
+            <div ng-message="required" >Campo requerido!</div>
+            <div ng-message="pattern">Este campo sólo permite letras</div>
           </div>
         </div>
 
@@ -29,10 +29,10 @@
           'errorBorder': formularioCarrera.nombre.$invalid && !formularioCarrera.nombre.$pristine
         }
         ">
-          <input type="text" class="form-control" name="nombre" placeholder="Ingresar nombre de la carrera" ng-model="carreraCtrl.nombre" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚ ]*$/" required>
-          <div ng-messages="formularioCarrera.nombre.$error" class="error">
-            <div ng-message-exp="'required'">Campo requerido!</div>
-            <div ng-message-exp="'pattern'">Este campo solo permite letras</div>
+          <input type="text" class="form-control" name="nombre" placeholder="Ingresar nombre de la carrera" ng-model="carreraCtrl.nombre" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ ]*$/" required>
+          <div ng-messages="formularioCarrera.nombre.$error" class="error" ng-show="formularioCarrera.nombre.$invalid && !formularioCarrera.nombre.$pristine">
+            <div ng-message="required">Campo requerido!</div>
+            <div ng-message="pattern">Este campo sólo permite letras</div>
           </div>
         </div>
 
@@ -44,7 +44,7 @@
           'errorBorder': formularioCarrera.nivel.$invalid && !formularioCarrera.nivel.$pristine
         }
         ">
-        
+
           <select class="form-control" name="nivel" ng-model="carreraCtrl.nivel" required>
             <option value="">--Seleccione nivel--</option>
             <option value="Técnico">Técnico</option>
@@ -53,8 +53,8 @@
             <option value="Licenciatura">Licenciatura</option>
           </select>
 
-          <div ng-messages="formularioCarrera.nivel.$error" class="error">
-            <div ng-message-exp="'required'">Campo requerido!</div>
+          <div ng-messages="formularioCarrera.nivel.$error" class="error" ng-show="formularioCarrera.nivel.$invalid && !formularioCarrera.nivel.$pristine">
+            <div ng-message="required">Campo requerido!</div>
           </div>
         </div>
 
