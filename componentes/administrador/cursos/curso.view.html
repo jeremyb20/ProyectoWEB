@@ -12,25 +12,25 @@
 
         <div class="col-md-3 col-md-offset-3" ng-class="
         {
-          'errorBorder': formularioCurso.codigo.$invalid && !formularioCurso.codigo.$pristine
+          'errorBorder': formularioCurso.codigo.$invalid && (!formularioCurso.codigo.$pristine || formularioCurso.$submitted)
         }
         ">
 
-          <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="cursoCtrl.codigo" ng-pattern="/^[0-9]*$/" required>
-          <div ng-messages="formularioCurso.codigo.$error" class="error" ng-show="formularioCurso.codigo.$invalid && !formularioCurso.codigo.$pristine">
-            <div ng-message="required" >Campo requerido!</div>
+          <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="cursoCtrl.codigo" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ0-9- ]*$/" required>
+          <div ng-messages="formularioCurso.codigo.$error" class="error" ng-show="formularioCurso.codigo.$invalid && (!formularioCurso.codigo.$pristine || formularioCurso.$submitted)">
+            <div ng-message="required" >Campo requerido</div>
             <div ng-message="pattern">Este campo sólo permite números</div>
           </div>
         </div>
 
         <div class="col-md-3" ng-class="
         {
-          'errorBorder': formularioCurso.nombre.$invalid && !formularioCurso.nombre.$pristine
+          'errorBorder': formularioCurso.nombre.$invalid && (!formularioCurso.nombre.$pristine || formularioCurso.$submitted)
         }
         ">
           <input type="text" class="form-control" name="nombre" placeholder="Ingresar nombre del curso" ng-model="cursoCtrl.nombre" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ ]*$/" required>
-          <div ng-messages="formularioCurso.nombre.$error" class="error" ng-show="formularioCurso.nombre.$invalid && !formularioCurso.nombre.$pristine">
-            <div ng-message="required">Campo requerido!</div>
+          <div ng-messages="formularioCurso.nombre.$error" class="error" ng-show="formularioCurso.nombre.$invalid && (!formularioCurso.nombre.$pristine || formularioCurso.$submitted)">
+            <div ng-message="required">Campo requerido</div>
             <div ng-message="pattern">Este campo sólo permite letras</div>
           </div>
         </div>
@@ -40,7 +40,7 @@
       <div class="row text-center">
         <div class="col-md-3 col-md-offset-3" ng-class="
         {
-          'errorBorder': formularioCurso.carrera.$invalid && !formularioCurso.carrera.$pristine
+          'errorBorder': formularioCurso.carrera.$invalid && (!formularioCurso.carrera.$pristine || formularioCurso.$submitted)
         }
         ">
 
@@ -49,13 +49,13 @@
             <option ng-repeat="carrera in cursoCtrl.carreras" value="{{$index}}">{{carrera.nombre}} ({{carrera.nivel}})</option>
           </select>
 
-          <div ng-messages="formularioCurso.carrera.$error" class="carrera" ng-show="formularioCurso.carrera.$invalid && !formularioCurso.carrera.$pristine">
-            <div ng-message="required">Campo requerido!</div>
+          <div ng-messages="formularioCurso.carrera.$error" class="error" ng-show="formularioCurso.carrera.$invalid && (!formularioCurso.carrera.$pristine || formularioCurso.$submitted)">
+            <div ng-message="required">Campo requerido</div>
           </div>
         </div>
 
         <div class="col-md-3">
-          <button type="submit" class="btn btn-primary pull-right" name="button" ng-click="cursoCtrl.save()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          <button type="submit" class="btn btn-primary pull-right" name="button" ng-click="cursoCtrl.save(formularioCurso.$valid)"><i class="fa fa-plus" aria-hidden="true"></i></button>
         </div>
 
       </div>
@@ -71,15 +71,15 @@
           <tr>
             <th class="text-center">Código</th>
             <th class="text-center">Nombre del curso</th>
-            <th class="text-center">Carrera</th>
+            <!-- <th class="text-center">Carrera</th> -->
             <th class="text-center">Eliminar</th>
           </tr>
-          <tbody ng-repeat="carrera in cursoCtrl.carreras">
+          <tbody ng-repeat="carrera in cursoCtrl.carreras track by $index">
             <tr ng-repeat="curso in carrera.cursos">
               <td>{{curso.codigoCurso}}</td>
               <td>{{curso.curso}}</td>
-              <td>{{carrera.nombre}}</td>
-              <td><button type="button" ng-click="carreraCtrl.eliminarCarrera(carrera.codigoCarrera, $event)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+              <!-- <td>{{carrera.nombre}}</td> -->
+              <td><button type="button" ng-click="cursoCtrl.eliminar($parent.$index, $index, $event)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
           </tbody>
         </table>

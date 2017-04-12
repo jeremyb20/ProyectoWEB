@@ -24,7 +24,7 @@
         {
          codigoCurso : 'WEBTEC-03',
          curso :'Diseño Web II'
-        },
+        }
 
       ]
     },
@@ -44,7 +44,7 @@
          ]
       }
     ];
-     console.log(carreras);
+
 
     var profesores = [
       {
@@ -58,13 +58,11 @@
     var publicAPI = {
       setCarreras : _setCarreras,
       getCarreras : _getCarreras,
-      getCursosOpciones : _getCursosOpciones,
       getCarreraCodigoIndex : _getCarreraCodigoIndex,
       eliminarCarrera : _eliminarCarrera,
       asignarCurso : _asignarCurso,
-      getCursoIndex : _getCursoIndex,
       eliminarCurso : _eliminarCurso,
-      eliminarCurso : _eliminarCurso,
+      getCursoCodigoIndex : _getCursoCodigoIndex,
       setProfesores : _setProfesores,
       getProfesores : _getProfesores
     };
@@ -78,21 +76,28 @@
       return carreras;
     }
 
-    function _getCursosOpciones(){
-      return cursosOpciones;
-    }
 
     function _getCarreraCodigoIndex(pCodigoCarrera) {
       var carreraIndex = -1;
       for (var i = 0; i < carreras.length; i++) {
-        if (pCodigoCarrera == carreras[i].codigoCarrera ) {
+        if (pCodigoCarrera.toLowerCase() == carreras[i].codigoCarrera.toLowerCase() ) {
           carreraIndex = i;
         }
       }
       return carreraIndex;
+    }
 
+    function _getCursoCodigoIndex(pCodigoCurso) {
+      var cursoIndex = -1;
+      for (var i = 0; i < carreras.length; i++) {
+        for (var y = 0; y < carreras[i].cursos.length; y++) {
+          if (pCodigoCurso.toLowerCase() == carreras[i].cursos[y].codigoCurso.toLowerCase()) {
+            cursoIndex = y;
+          }
 
-
+        }
+      }
+      return cursoIndex;
     }
 
     function _eliminarCarrera(pCarrera) {
@@ -105,26 +110,10 @@
     }
 
     function _eliminarCurso(pCarrera, pCurso) {
-      carreras[pCarrera].cursos.splice({pCurso});
+      carreras[Number(pCarrera)].cursos.splice(Number(pCurso), 1);
     }
 
-    function _getCursoIndex(pCarrera, pCurso) {
 
-      var cursoIndex = -1;
-
-      for (var i = 0; i < carreras.length; i++) {
-        if (pCarrera == i) {
-          for (var y = 0; y < carreras[i].cursos.length; y++) {
-            alert(carreras[i].cursos[y]);
-            if (pCurso == carreras[i].cursos[y]) {
-              cursoIndex = y;
-            }
-          }
-        }
-      }
-      alert(cursoIndex);
-      return cursoIndex;
-    }
 
     function _setProfesores(pProfesor) {
       preofesores = _getProfesores();

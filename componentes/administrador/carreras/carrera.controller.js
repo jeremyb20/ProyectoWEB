@@ -11,43 +11,58 @@
       }init();
 
 
-      carreraCtrl.save = function (){
-        var encontrarCursoIndex = administradorService.getCarreraCodigoIndex(carreraCtrl.codigoCarrera);
+      carreraCtrl.save = function (valid){
 
-        if (encontrarCursoIndex == -1) {
-          var nuevaCarrera = {
-            codigoCarrera : carreraCtrl.codigoCarrera,
-            nombre : carreraCtrl.nombre,
-            nivel : carreraCtrl.nivel,
-            cursos: [
-              {}
-            ]
+        if (valid) {
+
+          var encontrarCarreraIndex = administradorService.getCarreraCodigoIndex(carreraCtrl.codigoCarrera);
+
+          if (encontrarCarreraIndex == -1) {
+            var nuevaCarrera = {
+              codigoCarrera : carreraCtrl.codigoCarrera.toUpperCase(),
+              nombre : carreraCtrl.nombre,
+              nivel : carreraCtrl.nivel,
+              cursos: [
+                {}
+              ]
+
+            }
+
+            administradorService.setCarreras(nuevaCarrera);
+
+            $mdDialog.show(
+              $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .title('¡La carrera ' + nuevaCarrera.nombre + ' ha sido agregada  exitósamente!')
+              .textContent('')
+              .ariaLabel('Left to right demo')
+              .ok('OK')
+            );
+
+          }else {
+
+            $mdDialog.show(
+              $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .title('¡La carrera ya existe en el sistema!')
+              .textContent('')
+              .ariaLabel('Left to right demo')
+              .ok('OK')
+            );
 
           }
 
-          $mdDialog.show(
-            $mdDialog.alert()
-            .clickOutsideToClose(true)
-            .title('La carrera ' + nuevaCarrera.nombre + ' ha sido agregada  exitósamente!')
-            .textContent('')
-            .ariaLabel('Left to right demo')
-            .ok('OK')
-          );
-
-          administradorService.setCarreras(nuevaCarrera);
-
         }else {
-
           $mdDialog.show(
             $mdDialog.alert()
             .clickOutsideToClose(true)
-            .title('La carrera ya existe en el sistema!')
+            .title('¡Por favor complete los espacios requeridos!')
             .textContent('')
             .ariaLabel('Left to right demo')
             .ok('OK')
           );
-
         }
+
 
       }
 
@@ -64,6 +79,15 @@
 
           $mdDialog.show(confirm).then(function() {
             administradorService.eliminarCarrera(eliminarCursoIndex);
+
+            $mdDialog.show(
+              $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .title('¡La carrera fue eliminada del sistema!')
+              .textContent('')
+              .ariaLabel('Left to right demo')
+              .ok('OK')
+            );
           });
 
 
