@@ -46,7 +46,7 @@
 
           <select class="form-control" name="carrera" ng-model="cursoCtrl.carrera" required>
             <option value="">--Seleccione carrera--</option>
-            <option ng-repeat="carrera in cursoCtrl.carreras" value="{{$index}}">{{carrera.nombre}} ({{carrera.nivel}})</option>
+            <option ng-repeat="carrera in cursoCtrl.carreras" value="{{carrera.codigoCarrera}}">{{carrera.nombre}} ({{carrera.nivel}})</option>
           </select>
 
           <div ng-messages="formularioCurso.carrera.$error" class="error" ng-show="formularioCurso.carrera.$invalid && (!formularioCurso.carrera.$pristine || formularioCurso.$submitted)">
@@ -74,12 +74,12 @@
             <!-- <th class="text-center">Carrera</th> -->
             <th class="text-center">Eliminar</th>
           </tr>
-          <tbody ng-repeat="carrera in cursoCtrl.carreras track by $index">
-            <tr ng-repeat="curso in carrera.cursos">
+          <tbody >
+            <tr ng-repeat="curso in cursoCtrl.cursos">
               <td>{{curso.codigoCurso}}</td>
-              <td>{{curso.curso}}</td>
+              <td>{{curso.nombre}}</td>
               <!-- <td>{{carrera.nombre}}</td> -->
-              <td><button type="button" ng-click="cursoCtrl.eliminar($parent.$index, $index, $event)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+              <td><button type="button" ng-click="cursoCtrl.eliminar($index, $event)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
           </tbody>
         </table>

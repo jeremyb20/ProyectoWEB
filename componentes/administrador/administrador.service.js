@@ -5,45 +5,45 @@
 
   function administradorService(inicioSesionService){
     var carreras = [
-    {
+      {
         nombre : 'Diseño y Desarrollo Web',
         codigoCarrera : 'WEBTEC',
-        nivel : 'Técnico',
-      cursos:
-      [
-        {
-         codigoCurso : 'WEBTEC-01',
-         curso : 'Fundamentos de Programación Web'
-        },
-
-        {
-         codigoCurso : 'WEBTEC-02',
-         curso :'Diseño Web I'
-        },
-
-        {
-         codigoCurso : 'WEBTEC-03',
-         curso :'Diseño Web II'
-        }
-
-      ]
-    },
+        nivel : 'Técnico'
+      },
       {
         nombre : 'Telemática',
         codigoCarrera : 'TELTEC',
-        nivel : 'Técnico',
-        cursos : [
-          {
-           codigoCurso : 'TELTEC-01',
-           curso : 'Redes I'
-          },
-          {
-           codigoCurso : 'TELTEC-02',
-           curso : 'Redes II'
-          }
-         ]
+        nivel : 'Técnico'
       }
     ];
+
+    var cursos = [
+      {
+        codigoCarrera : 'WEBTEC',
+        codigoCurso : 'WEBTEC-01',
+        nombre : 'Fundamentos de Programación Web'
+      },
+      {
+        codigoCarrera : 'WEBTEC',
+        codigoCurso : 'WEBTEC-02',
+        nombre : 'Diseño Web I'
+      },
+      {
+        codigoCarrera : 'WEBTEC',
+        codigoCurso : 'WEBTEC-03',
+        nombre : 'Diseño Web II'
+      },
+      {
+        codigoCarrera : 'TELTEC',
+        codigoCurso : 'TELTEC-01',
+        nombre : 'Redes I'
+      },
+      {
+        codigoCarrera : 'TELTEC',
+        codigoCurso : 'TELTEC-02',
+        nombre : 'Redes II'
+      }
+    ]
 
 
     var profesores = [
@@ -57,12 +57,13 @@
 
     var publicAPI = {
       setCarreras : _setCarreras,
+      setCursos : _setCursos,
       getCarreras : _getCarreras,
+      getCursos : _getCursos,
       getCarreraCodigoIndex : _getCarreraCodigoIndex,
-      eliminarCarrera : _eliminarCarrera,
-      asignarCurso : _asignarCurso,
-      eliminarCurso : _eliminarCurso,
       getCursoCodigoIndex : _getCursoCodigoIndex,
+      eliminarCarrera : _eliminarCarrera,
+      eliminarCurso : _eliminarCurso,
       setProfesores : _setProfesores,
       getProfesores : _getProfesores
     };
@@ -72,8 +73,16 @@
       carreras.push(pCarrera);
     }
 
+    function _setCursos(pCurso){
+      cursos.push(pCurso);
+    }
+
     function _getCarreras(){
       return carreras;
+    }
+
+    function _getCursos() {
+      return cursos;
     }
 
 
@@ -89,12 +98,9 @@
 
     function _getCursoCodigoIndex(pCodigoCurso) {
       var cursoIndex = -1;
-      for (var i = 0; i < carreras.length; i++) {
-        for (var y = 0; y < carreras[i].cursos.length; y++) {
-          if (pCodigoCurso.toLowerCase() == carreras[i].cursos[y].codigoCurso.toLowerCase()) {
-            cursoIndex = y;
-          }
-
+      for (var i = 0; i < cursos.length; i++) {
+        if (pCodigoCurso.toLowerCase() == cursos[i].codigoCurso.toLowerCase() ) {
+          cursoIndex = i;
         }
       }
       return cursoIndex;
@@ -104,13 +110,8 @@
       carreras.splice(pCarrera, 1);
     }
 
-    function _asignarCurso(pNuevoCurso, pCarrera) {
-
-      carreras[Number(pCarrera)].cursos.push({codigoCurso:pNuevoCurso.codigo, curso:pNuevoCurso.nombre});
-    }
-
-    function _eliminarCurso(pCarrera, pCurso) {
-      carreras[Number(pCarrera)].cursos.splice(Number(pCurso), 1);
+    function _eliminarCurso(pCurso) {
+      cursos.splice(pCurso, 1);
     }
 
 

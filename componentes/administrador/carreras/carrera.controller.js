@@ -21,11 +21,7 @@
             var nuevaCarrera = {
               codigoCarrera : carreraCtrl.codigoCarrera.toUpperCase(),
               nombre : carreraCtrl.nombre,
-              nivel : carreraCtrl.nivel,
-              cursos: [
-                {}
-              ]
-
+              nivel : carreraCtrl.nivel
             }
 
             administradorService.setCarreras(nuevaCarrera);
@@ -38,6 +34,21 @@
               .ariaLabel('Left to right demo')
               .ok('OK')
             );
+
+            carreraCtrl.codigoCarrera = undefined;
+            carreraCtrl.nombre = undefined;
+            carreraCtrl.nivel = undefined;
+
+            formularioCarrera.$reset();
+            formularioCarrera.$$setValidity();
+
+
+
+
+
+
+
+
 
           }else {
 
@@ -56,7 +67,7 @@
           $mdDialog.show(
             $mdDialog.alert()
             .clickOutsideToClose(true)
-            .title('¡Por favor complete los espacios requeridos!')
+            .title('¡Por favor complete los campos requeridos!')
             .textContent('')
             .ariaLabel('Left to right demo')
             .ok('OK')

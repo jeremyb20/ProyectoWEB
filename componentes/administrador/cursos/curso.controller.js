@@ -8,6 +8,7 @@
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
         cursoCtrl.carreras = administradorService.getCarreras();
+        cursoCtrl.cursos = administradorService.getCursos();
       }init();
 
       cursoCtrl.save = function (valid){
@@ -19,11 +20,12 @@
 
           if (encontrarCurso == -1) {
             var nuevoCurso = {
-              codigo : cursoCtrl.codigo.toUpperCase(),
+              codigoCarrera : cursoCtrl.carrera,
+              codigoCurso : cursoCtrl.codigo.toUpperCase(),
               nombre : cursoCtrl.nombre
             }
 
-           administradorService.asignarCurso(nuevoCurso, cursoCtrl.carrera);
+           administradorService.setCursos(nuevoCurso);
 
            $mdDialog.show(
              $mdDialog.alert()
@@ -33,6 +35,15 @@
              .ariaLabel('Left to right demo')
              .ok('OK')
            );
+
+           $scope.data = { "name": ""};
+
+           $scope.reset = function() {
+             $scope.data.name = "";
+             $scope.form.$setPristine();
+           }
+
+           
 
           }else {
 
@@ -51,7 +62,7 @@
           $mdDialog.show(
             $mdDialog.alert()
             .clickOutsideToClose(true)
-            .title('¡Por favor complete los espacios requeridos!')
+            .title('¡Por favor complete los campos requeridos!')
             .textContent('')
             .ariaLabel('Left to right demo')
             .ok('OK')
@@ -64,7 +75,7 @@
 
       }
 
-      cursoCtrl.eliminar = function (pCarrera, pCurso, ev) {
+      cursoCtrl.eliminar = function (pCurso, ev) {
 
         confirm = $mdDialog.confirm()
       .title('¿Está seguro de que desea eliminar el curso seleccionado?')
@@ -75,7 +86,7 @@
       .cancel('No');
 
       $mdDialog.show(confirm).then(function() {
-        administradorService.eliminarCurso(pCarrera, pCurso);
+        administradorService.eliminarCurso(pCurso);
 
         $mdDialog.show(
           $mdDialog.alert()
