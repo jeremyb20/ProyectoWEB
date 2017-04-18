@@ -7,7 +7,7 @@
 
 
 
-    <form name="formularioCarrera" novalidate="" id="formularioCarrera">
+    <form name="formularioCarrera" novalidate="">
 
       <div class="row text-center">
 
@@ -17,7 +17,7 @@
         }
         ">
 
-          <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="carreraCtrl.codigoCarrera" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ ]*$/" ng-required="">
+          <input type="text" class="form-control" name="codigo" placeholder="Código" ng-model="carreraCtrl.codigoCarrera" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ ]*$/" required>
           <div ng-messages="formularioCarrera.codigo.$error" class="error" ng-show="formularioCarrera.codigo.$invalid && (!formularioCarrera.codigo.$pristine || formularioCarrera.$submitted)">
             <div ng-message="required" >Campo requerido</div>
             <div ng-message="pattern">Este campo sólo permite letras</div>
@@ -29,7 +29,7 @@
           'errorBorder': formularioCarrera.nombre.$invalid && (!formularioCarrera.nombre.$pristine || formularioCarrera.$submitted)
         }
         ">
-          <input type="text" class="form-control" name="nombre" placeholder="Ingresar nombre de la carrera" ng-model="carreraCtrl.nombre" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ ]*$/" ng-required="">
+          <input type="text" class="form-control" name="nombre" placeholder="Ingresar nombre de la carrera" ng-model="carreraCtrl.nombre" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ ]*$/" required>
           <div ng-messages="formularioCarrera.nombre.$error" class="error" ng-show="formularioCarrera.nombre.$invalid && (!formularioCarrera.nombre.$pristine || formularioCarrera.$submitted)">
             <div ng-message="required">Campo requerido</div>
             <div ng-message="pattern">Este campo sólo permite letras</div>
@@ -45,7 +45,7 @@
         }
         ">
 
-          <select class="form-control" name="nivel" ng-model="carreraCtrl.nivel" ng-required="">
+          <select class="form-control" name="nivel" ng-model="carreraCtrl.nivel" required>
             <option value="">--Seleccione nivel--</option>
             <option value="Técnico">Técnico</option>
             <option value="Diplomado">Diplomado</option>
@@ -83,7 +83,7 @@
               <td>{{carrera.codigoCarrera}}</td>
               <td>{{carrera.nombre}}</td>
               <td>{{carrera.nivel}}</td>
-              <td><button type="button" ng-click="carreraCtrl.eliminarCarrera(carrera.codigoCarrera, $event)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+              <td><button type="button" ng-click="carreraCtrl.eliminarCarrera(carrera._id, $event)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
             </tr>
           </tbody>
         </table>

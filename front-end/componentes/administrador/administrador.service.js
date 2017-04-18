@@ -3,7 +3,7 @@
   .module('myEnsamble')
   .service('administradorService', administradorService);
 
-  function administradorService(inicioSesionService){
+  function administradorService(inicioSesionService,$http){
     var carreras = [
       {
         nombre : 'Diseño y Desarrollo Web',
@@ -60,6 +60,8 @@
       setCursos : _setCursos,
       getCarreras : _getCarreras,
       getCursos : _getCursos,
+      getId : _getId,
+      setId : _setId,
       getCarreraCodigoIndex : _getCarreraCodigoIndex,
       getCursoCodigoIndex : _getCursoCodigoIndex,
       eliminarCarrera : _eliminarCarrera,
@@ -69,8 +71,12 @@
     };
     return publicAPI; // todas las funciones que sean llamadas por ajax deben estar debajo del return, para que cuando angular corra el script haga el return y devuelva el api , las funciones debajo del return son privadas y se devuelve el api que es el que contiene las funciones
 
+
+
     function _setCarreras(pCarrera){
-      carreras.push(pCarrera);
+      //users.push(pUser);
+      return $http.post('http://localhost:8000/api/carreras', pCarrera);
+
     }
 
     function _setCursos(pCurso){
@@ -78,11 +84,26 @@
     }
 
     function _getCarreras(){
-      return carreras;
+      return $http.get('http://localhost:8000/api/carreras');
     }
 
     function _getCursos() {
       return cursos;
+    }
+
+    function _getId(){
+      var id = Number(localStorage.getItem('id'));
+      if(id==null){
+        id = 0;
+      }else{
+        id++;
+      }
+      return id;
+    }
+
+    function _setId(pid){
+      localStorage.setItem('id', pid);
+
     }
 
 
@@ -106,8 +127,8 @@
       return cursoIndex;
     }
 
-    function _eliminarCarrera(pCarrera) {
-      carreras.splice(pCarrera, 1);
+    function _eliminarCarrera(id) {
+      return $http.delete('http://localhost:8000/api/carreras/' + id);
     }
 
     function _eliminarCurso(pCurso) {

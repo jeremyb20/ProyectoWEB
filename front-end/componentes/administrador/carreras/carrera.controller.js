@@ -7,24 +7,39 @@
       var carreraCtrl = this; //binding del controlador con el html, solo en el controlador
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        carreraCtrl.carreras = administradorService.getCarreras();
+
+        administradorService.getCarreras()
+          .success(function(data){
+            carreraCtrl.carreras = data;
+
+          });
+
       }init();
 
 
-      carreraCtrl.save = function (valid){
+      carreraCtrl.save = function (valido){
 
-        if (valid) {
-
-          var encontrarCarreraIndex = administradorService.getCarreraCodigoIndex(carreraCtrl.codigoCarrera);
-
-          if (encontrarCarreraIndex == -1) {
+        if (valido) {
             var nuevaCarrera = {
               codigoCarrera : carreraCtrl.codigoCarrera.toUpperCase(),
               nombre : carreraCtrl.nombre,
               nivel : carreraCtrl.nivel
             }
 
-            administradorService.setCarreras(nuevaCarrera);
+            administradorService.setCarreras(nuevaCarrera)
+            .success(function(data){
+              console.log(data);
+
+            carreraCtrl.codigoCarrera = '';
+            carreraCtrl.nombre = '';
+            carreraCtrl.nivel = '';
+            init();
+
+        })
+
+        userCtrl.firstName = null;
+        administradorService.setId(nuevaCarrera.id);
+        console.log(newUser);
 
             $mdDialog.show(
               $mdDialog.alert()
@@ -34,15 +49,6 @@
               .ariaLabel('Left to right demo')
               .ok('OK')
             );
-
-            carreraCtrl.codigoCarrera = undefined;
-            carreraCtrl.nombre = undefined;
-            carreraCtrl.nivel = undefined;
-
-            formularioCarrera.$reset();
-            formularioCarrera.$$setValidity();
-
-
 
 
 
@@ -55,7 +61,7 @@
             $mdDialog.show(
               $mdDialog.alert()
               .clickOutsideToClose(true)
-              .title('¡La carrera ya existe en el sistema!')
+              .title('¡Por favor complete los campos requeridos!')
               .textContent('')
               .ariaLabel('Left to right demo')
               .ok('OK')
@@ -63,22 +69,9 @@
 
           }
 
-        }else {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .clickOutsideToClose(true)
-            .title('¡Por favor complete los campos requeridos!')
-            .textContent('')
-            .ariaLabel('Left to right demo')
-            .ok('OK')
-          );
         }
+      carreraCtrl.eliminarCarrera = function (id, ev){
 
-
-      }
-
-      carreraCtrl.eliminarCarrera = function (pCodigoCarrera, ev){
-        var eliminarCursoIndex = administradorService.getCarreraCodigoIndex(pCodigoCarrera),
 
             confirm = $mdDialog.confirm()
           .title('¿Está seguro de que desea eliminar la carrera seleccionada?')
@@ -89,7 +82,7 @@
           .cancel('No');
 
           $mdDialog.show(confirm).then(function() {
-            administradorService.eliminarCarrera(eliminarCursoIndex);
+            administradorService.eliminarCarrera(id);
 
             $mdDialog.show(
               $mdDialog.alert()
