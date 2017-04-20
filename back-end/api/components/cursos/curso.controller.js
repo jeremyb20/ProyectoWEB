@@ -17,7 +17,7 @@ module.exports.save = function(req,res){ //exporta el controlador
           if(err){
             res.json({success:false,msg:'El curso ya existe en el sistema.'});
           }else {
-            res.json({success:true,msg:'El curso ha sido agregado exitosamente.'});
+            res.json({success:true,msg:'El curso ' + nuevoCurso.nombre + ' ha sido agregado exitosamente.'});
           }
         });
 

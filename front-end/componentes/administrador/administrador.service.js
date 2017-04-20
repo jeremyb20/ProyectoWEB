@@ -21,8 +21,6 @@
       setCursos : _setCursos,
       getCarreras : _getCarreras,
       getCursos : _getCursos,
-      getCarreraCodigoIndex : _getCarreraCodigoIndex,
-      getCursoCodigoIndex : _getCursoCodigoIndex,
       eliminarCarrera : _eliminarCarrera,
       eliminarCurso : _eliminarCurso,
       setProfesores : _setProfesores,
@@ -48,28 +46,6 @@
 
     function _getCursos() {
       return $http.get('http://localhost:8000/api/cursos');
-    }
-
-
-
-    function _getCarreraCodigoIndex(pCodigoCarrera) {
-      var carreraIndex = -1;
-      for (var i = 0; i < carreras.length; i++) {
-        if (pCodigoCarrera.toLowerCase() == carreras[i].codigoCarrera.toLowerCase() ) {
-          carreraIndex = i;
-        }
-      }
-      return carreraIndex;
-    }
-
-    function _getCursoCodigoIndex(pCodigoCurso) {
-      var cursoIndex = -1;
-      for (var i = 0; i < cursos.length; i++) {
-        if (pCodigoCurso.toLowerCase() == cursos[i].codigoCurso.toLowerCase() ) {
-          cursoIndex = i;
-        }
-      }
-      return cursoIndex;
     }
 
     function _eliminarCarrera(id) {

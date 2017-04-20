@@ -30,7 +30,25 @@
               nombre : cursoCtrl.nombre
             }
 
-           administradorService.setCursos(nuevoCurso);
+           administradorService.setCursos(nuevoCurso)
+           .success(function(data){
+             console.log(data);
+
+             $mdDialog.show(
+               $mdDialog.alert()
+               .clickOutsideToClose(true)
+               .title(data.msg)
+               .textContent('')
+               .ariaLabel('Left to right demo')
+               .ok('OK')
+             );
+
+           cursoCtrl.carrera = '';
+           cursoCtrl.codigo = '';
+           cursoCtrl.nombre = '';
+           init();
+
+       })
 
 
 
