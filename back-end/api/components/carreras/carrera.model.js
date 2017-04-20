@@ -2,7 +2,11 @@
 var mongoose = require('mongoose');
 //Esquema de usuarios
 var CarreraSchema = new mongoose.Schema({
-  codigoCarrera:String,
+  codigoCarrera:{
+    type: String,
+    unique: true,
+    required: true
+  },
   nombre: String,
   nivel: String
 

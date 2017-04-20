@@ -7,18 +7,23 @@
       var cursoCtrl = this; //binding del controlador con el html, solo en el controlador
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        cursoCtrl.carreras = administradorService.getCarreras();
-        cursoCtrl.cursos = administradorService.getCursos();
+        administradorService.getCarreras()
+          .success(function(data){
+            cursoCtrl.carreras = data;
+
+          });
+
+        administradorService.getCursos()
+          .success(function(data){
+            cursoCtrl.cursos = data;
+
+          });
+
       }init();
 
-      cursoCtrl.save = function (valid){
+      cursoCtrl.save = function (valido){
 
-        if (valid) {
-
-          var encontrarCurso = administradorService.getCursoCodigoIndex(cursoCtrl.codigo);
-
-
-          if (encontrarCurso == -1) {
+        if (valido) {
             var nuevoCurso = {
               codigoCarrera : cursoCtrl.carrera,
               codigoCurso : cursoCtrl.codigo.toUpperCase(),
@@ -27,36 +32,9 @@
 
            administradorService.setCursos(nuevoCurso);
 
-           $mdDialog.show(
-             $mdDialog.alert()
-             .clickOutsideToClose(true)
-             .title('¡El curso ' + nuevoCurso.nombre + ' ha sido agregado  exitósamente!')
-             .textContent('')
-             .ariaLabel('Left to right demo')
-             .ok('OK')
-           );
 
-           $scope.data = { "name": ""};
 
-           $scope.reset = function() {
-             $scope.data.name = "";
-             $scope.form.$setPristine();
-           }
 
-           
-
-          }else {
-
-            $mdDialog.show(
-              $mdDialog.alert()
-              .clickOutsideToClose(true)
-              .title('¡El curso ya existe en el sistema!')
-              .textContent('')
-              .ariaLabel('Left to right demo')
-              .ok('OK')
-            );
-
-          }
 
         }else {
           $mdDialog.show(
@@ -69,41 +47,39 @@
           );
         }
 
-
-
-
-
       }
 
-      cursoCtrl.eliminar = function (pCurso, ev) {
+      cursoCtrl.eliminarCurso = function (id, ev){
 
-        confirm = $mdDialog.confirm()
-      .title('¿Está seguro de que desea eliminar el curso seleccionado?')
-      .textContent('')
-      .ariaLabel('Lucky day')
-      .targetEvent(ev)
-      .ok('Sí')
-      .cancel('No');
 
-      $mdDialog.show(confirm).then(function() {
-        administradorService.eliminarCurso(pCurso);
-
-        $mdDialog.show(
-          $mdDialog.alert()
-          .clickOutsideToClose(true)
-          .title('¡El curso fue eliminado del sistema!')
+            confirm = $mdDialog.confirm()
+          .title('¿Está seguro de que desea eliminar el curso seleccionado?')
           .textContent('')
-          .ariaLabel('Left to right demo')
-          .ok('OK')
-        );
-      });
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Sí')
+          .cancel('No');
 
+          $mdDialog.show(confirm).then(function() {
+            administradorService.eliminarCurso(id)
+            .success(function(data){
+              init();
+            })
+
+            $mdDialog.show(
+              $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .title('¡El curso fue eliminado del sistema!')
+              .textContent('')
+              .ariaLabel('Left to right demo')
+              .ok('OK')
+            );
+          });
 
 
       }
 
 
-
-    }
+  }
 
 })();

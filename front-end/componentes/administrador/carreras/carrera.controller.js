@@ -30,6 +30,15 @@
             .success(function(data){
               console.log(data);
 
+              $mdDialog.show(
+                $mdDialog.alert()
+                .clickOutsideToClose(true)
+                .title(data.msg)
+                .textContent('')
+                .ariaLabel('Left to right demo')
+                .ok('OK')
+              );
+
             carreraCtrl.codigoCarrera = '';
             carreraCtrl.nombre = '';
             carreraCtrl.nivel = '';
@@ -37,18 +46,8 @@
 
         })
 
-        userCtrl.firstName = null;
-        administradorService.setId(nuevaCarrera.id);
-        console.log(newUser);
 
-            $mdDialog.show(
-              $mdDialog.alert()
-              .clickOutsideToClose(true)
-              .title('¡La carrera ' + nuevaCarrera.nombre + ' ha sido agregada  exitósamente!')
-              .textContent('')
-              .ariaLabel('Left to right demo')
-              .ok('OK')
-            );
+
 
 
 
@@ -82,7 +81,10 @@
           .cancel('No');
 
           $mdDialog.show(confirm).then(function() {
-            administradorService.eliminarCarrera(id);
+            administradorService.eliminarCarrera(id)
+            .success(function(data){
+              init();
+            })
 
             $mdDialog.show(
               $mdDialog.alert()
@@ -97,18 +99,6 @@
 
       }
 
-      carreraCtrl.asignar = function () {
-        var carreraSeleccionada = administradorService.getCarreraID(carreraCtrl.carreraSeleccionadaCurso);
-        administradorService.asignarCurso(carreraCtrl.nombreCurso, carreraSeleccionada);
-      }
-
-      carreraCtrl.eliminarCurso = function (){
-        var carreraSeleccionada = administradorService.getCarreraID(carreraCtrl.carreraSeleccionadaEliminarCurso),
-            cursoSeleccionado = administradorService.getCursoIndex(carreraCtrl.carreraSeleccionadaEliminarCurso, carreraCtrl.carreraEliminarCurso);
-            alert(cursoSeleccionado);
-            alert(carreraSeleccionada);
-       administradorService.eliminarCurso(carreraSeleccionada, cursoSeleccionado);
-      }
     }
 
 })();

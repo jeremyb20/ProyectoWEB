@@ -1,6 +1,6 @@
 var express = require('express');
 var	router = express.Router();
-var carreraController = require('./carrera.controller.js');
+var cursoController = require('./curso.controller.js');
 
 //Para las rutas con id
 router.param('id',function(req, res, next, id){
@@ -11,18 +11,18 @@ router.param('id',function(req, res, next, id){
 
 //Declaracion de las rutas
 
-router.route('/carreras')
+router.route('/cursos')
   .post(function(req, res){
-    carreraController.save(req,res);
+    cursoController.save(req,res);
  	});
 
-router.route('/carreras')
+router.route('/cursos')
   .get(function(req, res){
-    carreraController.findAll(req,res);
+    cursoController.findAll(req,res);
   });
-router.route('/carreras/:id')
+router.route('/cursos/:id')
   .delete(function(req, res){
-    carreraController.remove(req,res);
+    cursoController.remove(req,res);
  	});
 // router.route('/carreras')
 //   .put(function(req, res){

@@ -9,6 +9,7 @@ var config = require('./api/config/database');
 var connection = config.database;
 //Se declaran todos los accesos de las rutas
 carreraRoutes = require('./api/components/carreras/carrera.route');
+cursoRoutes = require('./api/components/cursos/curso.route');
 
 
 var app = express();
@@ -64,3 +65,4 @@ function handleError(res, reason, message, code) {
 
 // Conexion a todas la rutas
 app.use('/api', carreraRoutes);//se define el versionamiento del api
+app.use('/api', cursoRoutes);//se define el versionamiento del api

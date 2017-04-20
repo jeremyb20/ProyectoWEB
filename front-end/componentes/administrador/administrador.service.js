@@ -4,46 +4,7 @@
   .service('administradorService', administradorService);
 
   function administradorService(inicioSesionService,$http){
-    var carreras = [
-      {
-        nombre : 'Diseño y Desarrollo Web',
-        codigoCarrera : 'WEBTEC',
-        nivel : 'Técnico'
-      },
-      {
-        nombre : 'Telemática',
-        codigoCarrera : 'TELTEC',
-        nivel : 'Técnico'
-      }
-    ];
 
-    var cursos = [
-      {
-        codigoCarrera : 'WEBTEC',
-        codigoCurso : 'WEBTEC-01',
-        nombre : 'Fundamentos de Programación Web'
-      },
-      {
-        codigoCarrera : 'WEBTEC',
-        codigoCurso : 'WEBTEC-02',
-        nombre : 'Diseño Web I'
-      },
-      {
-        codigoCarrera : 'WEBTEC',
-        codigoCurso : 'WEBTEC-03',
-        nombre : 'Diseño Web II'
-      },
-      {
-        codigoCarrera : 'TELTEC',
-        codigoCurso : 'TELTEC-01',
-        nombre : 'Redes I'
-      },
-      {
-        codigoCarrera : 'TELTEC',
-        codigoCurso : 'TELTEC-02',
-        nombre : 'Redes II'
-      }
-    ]
 
 
     var profesores = [
@@ -60,8 +21,6 @@
       setCursos : _setCursos,
       getCarreras : _getCarreras,
       getCursos : _getCursos,
-      getId : _getId,
-      setId : _setId,
       getCarreraCodigoIndex : _getCarreraCodigoIndex,
       getCursoCodigoIndex : _getCursoCodigoIndex,
       eliminarCarrera : _eliminarCarrera,
@@ -80,7 +39,7 @@
     }
 
     function _setCursos(pCurso){
-      cursos.push(pCurso);
+      return $http.post('http://localhost:8000/api/cursos', pCurso);
     }
 
     function _getCarreras(){
@@ -88,23 +47,9 @@
     }
 
     function _getCursos() {
-      return cursos;
+      return $http.get('http://localhost:8000/api/cursos');
     }
 
-    function _getId(){
-      var id = Number(localStorage.getItem('id'));
-      if(id==null){
-        id = 0;
-      }else{
-        id++;
-      }
-      return id;
-    }
-
-    function _setId(pid){
-      localStorage.setItem('id', pid);
-
-    }
 
 
     function _getCarreraCodigoIndex(pCodigoCarrera) {
@@ -131,8 +76,8 @@
       return $http.delete('http://localhost:8000/api/carreras/' + id);
     }
 
-    function _eliminarCurso(pCurso) {
-      cursos.splice(pCurso, 1);
+    function _eliminarCurso(id) {
+      return $http.delete('http://localhost:8000/api/cursos/' + id);
     }
 
 

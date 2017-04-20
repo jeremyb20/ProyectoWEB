@@ -1,5 +1,5 @@
 //Requerimos el modelo  de usuarios
-var Carrera = require('./carrera.model.js');
+var Curso = require('./curso.model.js');
 var config = require('../../config/database');
 
 
@@ -7,17 +7,17 @@ module.exports.save = function(req,res){ //exporta el controlador
 
 
 
-        var nuevaCarrera = new Carrera({
+        var nuevoCurso = new Curso({
           codigoCarrera:req.body.codigoCarrera,
-          nombre:req.body.nombre,
-          nivel:req.body.nivel
+          codigoCurso:req.body.codigoCurso,
+          nombre:req.body.nombre
         });
 
-        nuevaCarrera.save(function(err){
+        nuevoCurso.save(function(err){
           if(err){
-            res.json({success:false,msg:'La carrera ya existe en el sistema.'});
+            res.json({success:false,msg:'El curso ya existe en el sistema.'});
           }else {
-            res.json({success:true,msg:'La carrera ' + nuevaCarrera.nombre +' se ha registrado correctamente.'});
+            res.json({success:true,msg:'El curso ha sido agregado exitosamente.'});
           }
         });
 
@@ -26,15 +26,15 @@ module.exports.save = function(req,res){ //exporta el controlador
 }
 
 module.exports.findAll = function(req,res){
-  Carrera.find().then(function(carreras){
-    res.send(carreras);
+  Curso.find().then(function(cursos){
+    res.send(cursos);
   });
 };
 //
 module.exports.remove = function(req,res){
   console.log(req.body.id);
-  Carrera.findByIdAndRemove({_id:req.body.id}).then(function(data){
-    res.json({success:true,msg:'Se ha eliminado correctamente.'});
+  Curso.findByIdAndRemove({_id:req.body.id}).then(function(data){
+    res.json({success:true,msg:'El curso se ha eliminado correctamente.'});
   });
 
 }
