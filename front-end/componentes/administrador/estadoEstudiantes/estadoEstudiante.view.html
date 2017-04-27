@@ -1,0 +1,91 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools md-center col-md-offset-2 col-md-10" >
+      <span>Estado de estudiantes</span>
+  </h2>
+</md-toolbar>
+  <md-container>
+    <div class="container-fluid">
+      <div class="row">
+        <md-tabs class="col-md-offset-2 col-md-10" >
+          <md-tab class="tab-estadoEstudiantes" label="Estudiantes Pendientes">
+           <md-content>
+              <div class="container-fluid" ng-repeat="pobjEstado  in estadoEstudianteCtrl.estadoEstudiantes | filter:{estado:'pendiente'}:true track by $index">
+                <div class="panel-group" id="accordion" >
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h4 class="panel-title md-padd">
+                            <span>Nombre del estudiante: <a data-toggle="collapse" ng-model="estadoEstudianteCtrl.nombreEstudiante" value="{{pobjEstado.nombreEstudiante}}{{pobjEstado.apellido1Estudiante}}{{pobjEstado.apellido2Estudiante}}" data-parent="#accordion">{{pobjEstado.nombreEstudiante}}{{pobjEstado.apellido1Estudiante}}{{pobjEstado.apellido2Estudiante}}</a></span>
+                          </h4>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="col-md-3">
+                            <button ng-click="estadoEstudianteCtrl.aceptar(pobjEstado)">Aceptar</button>
+                          </div>
+                          <div class="col-md-3">
+                            <button ng-click="estadoEstudianteCtrl.rechazado(pobjEstado)">Rechazar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                      <div class="panel-body">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </md-content>
+          </md-tab>
+
+
+          <md-tab class="tab-estadoEstudiantes" label="Estudiantes Aceptados">
+              <md-content>
+                  <div class="container-fluid" ng-repeat="pobjEstado in estadoEstudianteCtrl.estadoEstudiantes| filter:{estado:'aceptado'}:true track by $index">
+                      <div class="panel-group" id="accordion2" >
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <h4 class="panel-title md-padd">
+                                  <span>Nombre del estudiante: <a data-toggle="collapse" ng-model="estadoEstudianteCtrl.nombreEstudiante" value="{{pobjEstado.nombreEstudiante}}{{pobjEstado.apellido1Estudiante}}{{pobjEstado.apellido2Estudiante}}" data-parent="#accordion2">{{pobjEstado.nombreEstudiante}}{{pobjEstado.apellido1Estudiante}}{{pobjEstado.apellido2Estudiante}}</a></span>
+                                </h4>
+                              </div>
+                            </div>
+                          </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                 
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </md-content>
+          </md-tab>
+
+          <md-tab class="tab-estadoEstudiantes" label="Estudiantes Rechazados">
+            <md-content>
+              <div class="container-fluid" ng-repeat="pobjEstado in estadoEstudianteCtrl.estadoEstudiantes| filter:{estado:'rechazado'}:true track by $index">
+                  <div class="panel-group" id="accordion3" >
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <h4 class="panel-title md-padd">
+                              <span>Nombre del estudiante: <a data-toggle="collapse" ng-model="estadoEstudianteCtrl.nombreEstudiante" value="{{pobjEstado.nombreEstudiante}}{{pobjEstado.apellido1Estudiante}}{{pobjEstado.apellido2Estudiante}}" data-parent="#accordion3">{{pobjEstado.nombreEstudiante}}{{pobjEstado.apellido1Estudiante}}{{pobjEstado.apellido2Estudiante}}</a></span>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                       <div id="collapse1" class="panel-collapse collapse in">
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </md-content>
+          </md-tab>
+        </md-tabs>
+      </div>
+    </div>
+  </md-container>
+<div ui-view></div>

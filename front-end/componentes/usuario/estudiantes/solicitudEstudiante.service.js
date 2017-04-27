@@ -12,15 +12,14 @@
     return publicAPI; // todas las funciones que sean llamadas por ajax deben estar debajo del return, para que cuando angular corra el script haga el return y devuelva el api , las funciones debajo del return son privadas y se devuelve el api que es el que contiene las funciones
 
 
-    function _setSolicitudEstudiantes(nuevoEstudiante){
-      solicitudEstudiantes.push(nuevoEstudiante);
-      localStorage.setItem('mSolicitudEstudiantesLocal',JSON.stringify(solicitudEstudiantes));
+    function _setSolicitudEstudiantes(pnuevoEstudiante){
+      return $http.post('http://localhost:8000/api/solicitudEstudiantes', pnuevoEstudiante);
     }
 
     function _getSolicitudEstudiantes(){
-      var solicitudEstLocal = JSON.parse(localStorage.getItem('mSolicitudEstudiantesLocal'));
-      return solicitudEstudiantes;
+      return $http.get('http://localhost:8000/api/solicitudEstudiantes');
     }
+
   }
 
 })();

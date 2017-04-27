@@ -677,9 +677,10 @@ footer .copy-right i{
 
 /* Fin estilos Empresa */
 
+
 /* Incio estilos solicitudEstudiante */
 #solicitudEstudiante #bg-solicitudEstudiante{
-  background-image: url("../componentes/imagenes/estudiante.jpeg");
+  background-image: url("../componentes/imagenes/pexels-photo-306534.jpeg");
   background-position: center center;
   background-size: cover;
   height: 100vh;
@@ -699,17 +700,13 @@ footer .copy-right i{
   padding-top: 15vh;
 }
 
-#solicitudEstudiante label{
-  padding-top: 5vh;
+#solicitudEstudiante #lb-correo{
+  font-size: 22px;
 }
 
-#solicitudEstudiante .form-control{
-  border-radius: none;
-  -webkit-appearance: none;
+form #solicitudEstudiante label md-select{
+  color: #000;
 }
-
-
-
 /* Fin estilos solicitudEstudiante */
 
 

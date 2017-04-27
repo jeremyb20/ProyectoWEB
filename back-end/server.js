@@ -10,7 +10,7 @@ var connection = config.database;
 //Se declaran todos los accesos de las rutas
 carreraRoutes = require('./api/components/carreras/carrera.route');
 cursoRoutes = require('./api/components/cursos/curso.route');
-
+solicitudEstudianteRoutes = require('./api/components/solicitudEstudiantes/solicitudEstudiante.route');
 
 var app = express();
 app.use(express.static(__dirname + "/client"));//maneja archivos estáticos como un app web
@@ -66,3 +66,4 @@ function handleError(res, reason, message, code) {
 // Conexion a todas la rutas
 app.use('/api', carreraRoutes);//se define el versionamiento del api
 app.use('/api', cursoRoutes);//se define el versionamiento del api
+app.use('/api', solicitudEstudianteRoutes);//se define el versionamiento del api

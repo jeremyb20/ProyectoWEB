@@ -1,6 +1,7 @@
 var JwtStrategy = require('passport-jwt').Strategy;
 var Carrera = require('../models/carrera.model');
 var Curso = require('../models/curso.model');
+var SolicitudEstudiante = require('../models/solicitudEstudiante.model');
 var config = require('../config/database');
 
 module.exports = function(passport){
@@ -29,6 +30,19 @@ module.exports = function(passport){
         done(null,false);
       }
     });
+
+    SolicitudEstudiante.find({id:jwt_payload.sub},function(err,solicitudEstudiante){
+      if(err){
+        return done(err,false);
+      }
+      if(solicitudEstudiante){
+        done(null,solicitudEstudiante);
+      }else{
+        done(null,false);
+      }
+    });
+
+
     
   }));
 };
