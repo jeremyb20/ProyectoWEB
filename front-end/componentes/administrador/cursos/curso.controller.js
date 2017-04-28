@@ -24,15 +24,17 @@
       cursoCtrl.save = function (valido){
 
         if (valido) {
+
+
             var nuevoCurso = {
               codigoCarrera : cursoCtrl.carrera,
               codigoCurso : cursoCtrl.codigo.toUpperCase(),
               nombre : cursoCtrl.nombre
             }
 
-           administradorService.setCursos(nuevoCurso)
-           .success(function(data){
-             console.log(data);
+       administradorService.setCursos(nuevoCurso)
+       .success(function(data){
+         console.log(data);
 
              $mdDialog.show(
                $mdDialog.alert()

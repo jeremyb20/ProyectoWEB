@@ -59,21 +59,11 @@
 
 
     function _setProfesores(pProfesor) {
-      preofesores = _getProfesores();
-      preofesores.push(pProfesor);
-      localStorage.setItem('profesoreslLS',JSON.stringify(preofesores));
-      // profesores.push(pProfesor);
-      // usuarios.push(pProfesor);
+      return $http.post('http://localhost:8000/api/profesores', pProfesor);
     }
 
     function _getProfesores() {
-      var profesores = [];
-      if(localStorage.getItem('profesoreslLS') == null){
-        profesores = [];
-      }else{
-        profesores = JSON.parse(localStorage.getItem('profesoreslLS'));
-      }
-      return profesores;
+      return $http.get('http://localhost:8000/api/profesores');
     }
 
   }

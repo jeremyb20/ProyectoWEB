@@ -1,6 +1,7 @@
 var JwtStrategy = require('passport-jwt').Strategy;
 var Carrera = require('../models/carrera.model');
 var Curso = require('../models/curso.model');
+var Profesor = require('../models/profesor.model');
 var config = require('../config/database');
 
 module.exports = function(passport){
@@ -29,6 +30,17 @@ module.exports = function(passport){
         done(null,false);
       }
     });
-    
+
+    Profesor.find({id:jwt_payload.sub},function(err,profesor){
+      if(err){
+        return done(err,false);
+      }
+      if(profesor){
+        done(null,profesor);
+      }else{
+        done(null,false);
+      }
+    });
+
   }));
 };

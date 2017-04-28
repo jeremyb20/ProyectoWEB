@@ -1,43 +1,205 @@
-<div id="profesor">
-  <div class="row">
-    <div class="col-md-6">
+  <div id="carreras">
+  <div class="row no-margin">
 
-      <h1>Agregar Profesor</h1>
-
-      <div class="form-group">
-          <label for="txtNombreProfesor" class="control-label">Nombre:</label>
-          <input type="text" class="form-control" id="txtNombreProfesor" name="nombreProfesor" ng-model="edicionProfesorCtrl.nombreProfesor">
-      </div>
-
-      <div class="form-group">
-          <label for="txtCorreoProfesor" class="control-label">Correo:</label>
-          <input type="text" class="form-control" id="txtNombreProfesor" name="correoProfesor" ng-model="edicionProfesorCtrl.correoProfesor">
-      </div>
-
-      <div class="form-group">
-          <label for="txtContrasennaProfesor" class="control-label">Contraseña:</label>
-          <input type="password" class="form-control" id="txtContrasennaProfesor" name="contrasennaProfesor" ng-model="edicionProfesorCtrl.contrasennaProfesor">
-      </div>
-
-      <button type="button" class="btn btn-primary" ng-click="edicionProfesorCtrl.save()">Agregar</button>
-
-
+    <div class="col-md-12">
+      <h2 class="text-center">Agregar/Editar Profesor</h2>
     </div>
+
+
+    <form name="formularioProfesor" novalidate="">
+
+      <div class="row text-center">
+
+        <div class="col-md-2 col-md-offset-3" ng-class="
+        {
+          'errorBorder': formularioProfesor.nombre.$invalid && (!formularioProfesor.nombre.$pristine || formularioProfesor.$submitted)
+        }
+        ">
+
+          <input type="text" class="form-control" name="nombre" placeholder="Nombre" ng-model="edicionProfesorCtrl.nombre" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ0 ]*$/" required>
+          <div ng-messages="formularioProfesor.nombre.$error" class="error" ng-show="formularioProfesor.nombre.$invalid && (!formularioProfesor.nombre.$pristine || formularioProfesor.$submitted)">
+            <div ng-message="required" >Campo requerido</div>
+            <div ng-message="pattern">Este campo sólo permite letras</div>
+          </div>
+        </div>
+
+        <div class="col-md-2" ng-class="
+        {
+          'errorBorder': formularioProfesor.primerApellido.$invalid && (!formularioProfesor.primerApellido.$pristine || formularioProfesor.$submitted)
+        }
+        ">
+
+          <input type="text" class="form-control" name="primerApellido" placeholder="Primer apellido" ng-model="edicionProfesorCtrl.primerApellido" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ0 ]*$/" required>
+          <div ng-messages="formularioProfesor.primerApellido.$error" class="error" ng-show="formularioProfesor.primerApellido.$invalid && (!formularioProfesor.primerApellido.$pristine || formularioProfesor.$submitted)">
+            <div ng-message="required" >Campo requerido</div>
+            <div ng-message="pattern">Este campo sólo permite letras</div>
+          </div>
+        </div>
+
+        <div class="col-md-2" ng-class="
+        {
+          'errorBorder': formularioProfesor.segundoApellido.$invalid && (!formularioProfesor.segundoApellido.$pristine || formularioProfesor.$submitted)
+        }
+        ">
+
+          <input type="text" class="form-control" name="segundoApellido" placeholder="Segundo apellido" ng-model="edicionProfesorCtrl.segundoApellido" ng-pattern="/^[a-zA-ZáÁéÉíÍóÓúÚÑñ0 ]*$/" required>
+          <div ng-messages="formularioProfesor.segundoApellido.$error" class="error" ng-show="formularioProfesor.segundoApellido.$invalid && (!formularioProfesor.segundoApellido.$pristine || formularioProfesor.$submitted)">
+            <div ng-message="required" >Campo requerido</div>
+            <div ng-message="pattern">Este campo sólo permite letras</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row text-center">
+
+        <div class="col-md-3 col-md-offset-3" ng-class="
+        {
+          'errorBorder': formularioProfesor.email.$invalid && (!formularioProfesor.email.$pristine || formularioProfesor.$submitted)
+        }
+        ">
+
+          <input type="email" class="form-control" name="email" placeholder="Correo electrónico" ng-model="edicionProfesorCtrl.email" ng-pattern="/^[a-zA-Z0-9._-]+@ucenfotec.ac.cr$/" required>
+          <div ng-messages="formularioProfesor.email.$error" class="error" ng-show="formularioProfesor.email.$invalid && (!formularioProfesor.email.$pristine || formularioProfesor.$submitted)">
+            <div ng-message="required" >Campo requerido</div>
+            <div ng-message="pattern">Correo electrónico inválido</div>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-class="
+        {
+          'errorBorder': formularioProfesor.especialidad.$invalid && (!formularioProfesor.especialidad.$pristine || formularioProfesor.$submitted)
+        }
+        ">
+          <select class="form-control" name="especialidad" ng-model="edicionProfesorCtrl.especialidad" required>
+            <option value="">--Seleccione especialidad--</option>
+            <option value="Idioma extranjero: Inglés">Idioma extranjero: Inglés</option>
+            <option value="Informática, Sistemas y Aplicaciones informáticas">Informática, Sistemas y Aplicaciones informáticas</option>
+          </select>
+
+          <div ng-messages="formularioProfesor.especialidad.$error" class="error" ng-show="formularioProfesor.especialidad.$invalid && (!formularioProfesor.especialidad.$pristine || formularioProfesor.$submitted)">
+            <div ng-message="required">Campo requerido</div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="row text-center">
+
+        <div class="col-md-3 col-md-offset-3" ng-class="
+        {
+          'errorBorder': formularioProfesor.enfasis.$invalid && (!formularioProfesor.enfasis.$pristine || formularioProfesor.$submitted)
+        }
+        ">
+          <label for="">Seleccione énfasis</label>
+          <select class="form-control" name="enfasis" ng-model="edicionProfesorCtrl.enfasis" multiple required>
+            <option value="Desarrollo de Software">Desarrollo de Software</option>
+            <option value="Desarrollo y Diseño Web">Desarrollo y Diseño Web</option>
+            <option value="Diseño Digital">Diseño Digital</option>
+            <option value="Inglés Técnico y Conversacional">Inglés Técnico y Conversacional</option>
+            <option value="Seguridad Informática">Seguridad Informática</option>
+            <option value="Tecnología de Base de Datos">Tecnología de Base de Datos</option>
+            <option value="Telemática">Telemática</option>
+          </select>
+
+          <div ng-messages="formularioProfesor.enfasis.$error" class="error" ng-show="formularioProfesor.enfasis.$invalid && (!formularioProfesor.enfasis.$pristine || formularioProfesor.$submitted)">
+            <div ng-message="required">Campo requerido</div>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-class="
+        {
+          'errorBorder': formularioProfesor.cursos.$invalid && (!formularioProfesor.cursos.$pristine || formularioProfesor.$submitted)
+        }
+        ">
+          <label for="">Seleccione cursos</label>
+          <select class="form-control" name="cursos" ng-model="edicionProfesorCtrl.cursosSeleccionados" multiple="true" required>
+            <option ng-repeat="curso in edicionProfesorCtrl.cursos" value="{{curso.nombre}}">{{curso.nombre}}</option>
+          </select>
+
+          <div ng-messages="formularioProfesor.cursos.$error" class="error" ng-show="formularioProfesor.cursos.$invalid && (!formularioProfesor.cursos.$pristine || formularioProfesor.$submitted)">
+            <div ng-message="required">Campo requerido</div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-3">
+
+
+        <input type="text" class="form-control" name="estado" value="Elegible" placeholder="Estado: elegible" disabled ng-model="edicionProfesorCtrl.estado">
+
+          <!-- <select class="form-control" name="estado" ng-model="edicionProfesorCtrl.estado" required>
+            <option value="">--Seleccione Estado--</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+            <option value="Elegible">Elegible</option>
+            <option value="Comité">Comité</option>
+          </select> -->
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary pull-right" name="button" ng-click="edicionProfesorCtrl.save(formularioProfesor.$valid)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+
+
+
+      </form>
+
+
+
+      <div class="col-md-8 col-md-offset-2">
+        <table class="table text-center">
+          <tr>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Correo electrónico</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Especialidad</th>
+            <th class="text-center">Énfasis</th>
+            <th class="text-center">Cursos</th>
+            <th class="text-center">Editar</th>
+          </tr>
+          <tbody >
+            <tr ng-repeat="profesor in edicionProfesorCtrl.profesores">
+              <td>{{profesor.nombre}} {{profesor.primerApellido}} {{profesor.segundoApellido}}</td>
+              <td>{{profesor.email}}</td>
+              <td>{{profesor.estado}}</td>
+              <td>{{profesor.especialidad}}</td>
+              <td>
+                <span ng-repeat="(key, value) in profesor.enfasis">
+                  {{value}}
+                </span>
+              </td>
+              <td>
+                <span ng-repeat="(key, value) in profesor.cursos">
+                  {{value}}
+                </span>
+              </td>
+              <td><button type="button" ng-click="cursoCtrl.eliminarCurso(curso._id, $event)"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+
   </div>
-
-
-  <table>
-  <thead>
-    <th>Profesor</th>
-    <th>Correo</th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="profesor in edicionProfesorCtrl.profesores">
-      <td>{{profesor.nombreProfesor}}</td>
-      <td>{{profesor.correoProfesor}}</td>
-    </tr>
-  </tbody>
-</table>
-
 
 </div>

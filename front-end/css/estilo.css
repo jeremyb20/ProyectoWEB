@@ -32,7 +32,7 @@ body {
 
 
 
-.ng-hide:not(.ng-hide-animate) {
+/*.ng-hide:not(.ng-hide-animate) {
   display: block!important;
   visibility:hidden!important;
 }
@@ -40,7 +40,7 @@ body {
 .ng-hide{
   display: block!important;
   visibility:hidden!important;
-}
+}*/
 
 
 
@@ -724,6 +724,18 @@ footer .copy-right i{
   font-weight: bold;
   outline: none;
   padding: 0 10px;
+}
+
+#carreras input{
+  margin: 10px 0;
+}
+
+#carreras select{
+  margin: 10px 0;
+}
+
+#carreras label{
+  color: #fbb803;
 }
 
 #carreras h2{
