@@ -1,14 +1,14 @@
 (function(){
   angular
   .module('myEnsamble')
-  .service('ImagenService', ImagenService);
+  .service('ImagenesService', ImagenesService);
 
-  function ImagenService($http){
+  function ImagenesService($http){
 
     var cloudObj = {
-      url:'https://api.cloudinary.com/v1_1/db8ebl8lb/image/upload',
+      url:'https://api.cloudinary.com/v1_1/dronecc0l/image/upload',
       data:{
-        upload_preset: 'siajmu25',
+        upload_preset: 'bn4jcu6c',
         tags:'Any',
         context:'photo=test'
       }

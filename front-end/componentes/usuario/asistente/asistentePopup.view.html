@@ -1,0 +1,41 @@
+<md-dialog arial-label="correo" id=formCorreo>
+	<form ng-cloak name="formCorreoC">
+		<md-dialog-content class="formulario">
+			<h2>Nuevo mensaje</h2>
+			  <md-input-container  md-padding="" class="md-block" >
+	            <label>Para:</label>
+	            <input required="" placeholder="Cc Cco" md-no-asterisk name="para" ng-model="correoCtrl.para">
+	            <div ng-messages="formCorreoC.para.$error">
+	              <div ng-message-exp="'required'">Campo requerido</div>
+	              <div ng-message-exp="'pattern'">Solo se permiten letras</div>
+	            </div>
+	          </md-input-container>
+          
+
+	          <md-input-container  md-padding="" class="md-block">
+	            <label>Asunto:</label>
+	            <input required="" md-no-asterisk name="asunto" ng-model="correoCtrl.asunto">
+	            <div ng-messages="formCorreoC.asunto.$error">
+	              <div ng-message-exp="'required'">Campo requerido</div>
+	              <div ng-message-exp="'pattern'">Solo se permiten letras</div>
+	            </div>
+	          </md-input-container>
+          
+
+	          <md-input-container  md-padding="" class="md-block" >
+	            <label>Descripción</label>
+	            <input required="" md-no-asterisk name="descripcion" ng-model="correoCtrl.descripcion">
+	            <div ng-messages="formCorreoC.descripcion.$error">
+	              <div ng-message-exp="'required'">Campo requerido</div>
+	              <div ng-message-exp="'pattern'">Solo se permiten letras</div>
+	            </div>
+	          </md-input-container>
+          
+	           <div class="">
+	           		<div class="col-md-12">
+	           			<button class="sesion">Enviar</button>
+	           		</div>	 
+	           </div>
+		</md-dialog-content>
+	</form>
+</md-dialog>
