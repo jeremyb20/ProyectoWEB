@@ -1,5 +1,6 @@
 var JwtStrategy = require('passport-jwt').Strategy;
 var Carrera = require('../models/carrera.model');
+var Empresa = require('../models/empresa.model');
 var Curso = require('../models/curso.model');
 var SolicitudEstudiante = require('../models/solicitudEstudiante.model');
 var config = require('../config/database');
@@ -15,6 +16,16 @@ module.exports = function(passport){
       }
       if(carrera){
         done(null,carrera);
+      }else{
+        done(null,false);
+      }
+    });
+    Empresa.find({id:jwt_payload.sub},function(err,empresa){
+      if(err){
+        return done(err,false);
+      }
+      if(empresa){
+        done(null,empresa);
       }else{
         done(null,false);
       }
