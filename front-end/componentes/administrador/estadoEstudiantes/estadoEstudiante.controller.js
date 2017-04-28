@@ -10,10 +10,14 @@
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
        //estadoEstudianteCtrl.estadoEstudiantes = administradorService.getEstadoEstudiante();
      //  estadoEstudianteCtrl.cambiosEstadoEstudiantes = administradorService.getCambiosEstadoEstudiantes();
-       solicitudEstudianteService.getSolicitudEstudiantes().success(function(data){estadoEstudianteCtrl.solicitudEstudiantes = data; });
+      administradorService.getSolicitudEstud()
+          .success(function(data){
+            estadoEstudianteCtrl.solicitudEstudiantes = data;
+
+          });
       }init();
 
-      estadoEstudianteCtrl.solicitudEstudiantes =
+    
 
       estadoEstudianteCtrl.aceptar = function(pobjEstado){
         pobjEstado.estado = 'aceptado';
